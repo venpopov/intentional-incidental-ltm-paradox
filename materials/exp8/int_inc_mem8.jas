@@ -1,0 +1,36 @@
+{
+  "version": "3",
+  "data": {
+    "uuid": "17b1fdbf-3459-4a03-8b0b-aedd13e89371",
+    "title": "int_inc_mem8",
+    "description": "",
+    "groupStudy": false,
+    "dirName": "int_inc_mem8",
+    "comments": "",
+    "jsonData": null,
+    "componentList": [
+      {
+        "uuid": "f0f2c732-07f3-4f7d-8466-9abd3a9061b4",
+        "title": "int_inc_mem8",
+        "htmlFilePath": "index.html",
+        "reloadable": true,
+        "active": true,
+        "comments": "",
+        "jsonData": null
+      }
+    ],
+    "batchList": [
+      {
+        "uuid": "c66ce3b7-def2-47c6-806a-b23bbfc1922a",
+        "title": "Default",
+        "active": true,
+        "maxActiveMembers": null,
+        "maxTotalMembers": null,
+        "maxTotalWorkers": null,
+        "allowedWorkerTypes": null,
+        "comments": null,
+        "jsonData": null
+      }
+    ]
+  }
+}

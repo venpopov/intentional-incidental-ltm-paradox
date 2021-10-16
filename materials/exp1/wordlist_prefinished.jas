@@ -1,0 +1,36 @@
+{
+  "version": "3",
+  "data": {
+    "uuid": "1d91913c-37ed-4f1a-8809-ce1723c880e6",
+    "title": "wordlist_prefinished",
+    "description": "",
+    "groupStudy": false,
+    "dirName": "wordlist_prefinished",
+    "comments": "",
+    "jsonData": null,
+    "componentList": [
+      {
+        "uuid": "ebbb2d01-dcd6-412a-bd72-32b468cc7326",
+        "title": "wordlist_prefinished",
+        "htmlFilePath": "index.html",
+        "reloadable": true,
+        "active": true,
+        "comments": "",
+        "jsonData": null
+      }
+    ],
+    "batchList": [
+      {
+        "uuid": "5f3c6e6a-4c8e-4f30-9090-7e71f5c0476c",
+        "title": "Default",
+        "active": true,
+        "maxActiveMembers": null,
+        "maxTotalMembers": null,
+        "maxTotalWorkers": null,
+        "allowedWorkerTypes": null,
+        "comments": null,
+        "jsonData": null
+      }
+    ]
+  }
+}

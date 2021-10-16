@@ -1,7 +1,3 @@
-Contains experimental software, data and analysis code for the results reported in:
-
-Popov, V. & Dammes, H. (2021). Intent Matters: Resolving the Intentional vs Incidental Learning Paradox in Episodic Long-term Memory
-
 ## IMPORTANT!!!
 
 The order in which the experiments are reported and the order in which they were performed differs. All data and analysis files refer to the original experiment order, not the reported order. Here is how the two orders correspond to each other:

@@ -1,0 +1,36 @@
+{
+  "version": "3",
+  "data": {
+    "uuid": "7b522777-b25e-4e4b-8763-fee6da188dea",
+    "title": "int_inc_mem4",
+    "description": "Experiment for testing whether a deep semantic processing of stimuli prevents an intention vs incidental memory effect with an item-based paradigm in episodic memory",
+    "groupStudy": false,
+    "dirName": "int_inc_mem4",
+    "comments": "",
+    "jsonData": null,
+    "componentList": [
+      {
+        "uuid": "37f4cd70-4b2c-41b3-a0de-2c0b96e7bbf5",
+        "title": "int_inc_mem4",
+        "htmlFilePath": "index.html",
+        "reloadable": true,
+        "active": true,
+        "comments": "",
+        "jsonData": null
+      }
+    ],
+    "batchList": [
+      {
+        "uuid": "be4497d5-77d7-429d-a185-0d3259a009f8",
+        "title": "Default",
+        "active": true,
+        "maxActiveMembers": null,
+        "maxTotalMembers": null,
+        "maxTotalWorkers": null,
+        "allowedWorkerTypes": null,
+        "comments": null,
+        "jsonData": null
+      }
+    ]
+  }
+}

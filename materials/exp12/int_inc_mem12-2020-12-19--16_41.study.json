@@ -1,0 +1,4051 @@
+{
+  "components": {
+    "1": {
+      "id": "1",
+      "type": "lab.html.Form",
+      "content": "<header>\n  <h1> Welcome to the study!</h1>\n</header>\n\n<style>\n  #div1{width: 600px;text-align: center;}\n</style>\n\n<main class=\"content-horizontal-center\">\n  <div id=\"div1\">\n    <p> Hello and welcome to our experiment.</p>\n    <p>Make sure you can work for 15 minutes without any interruption. Please avoid any distractions (i.e., TV, music, smartphones, kids, cats). <b>Please don't leave the study tab or switch windows on your computer while the experiment is ongoing. Doing so will disqualify you from continuing the experiment and you will not receive compensation on Prolific.</b> Your cooperation will make sure we have high quality data for scientific inferences.</p>\n <!--  <p> Please enter your personal subject number in the field. If you do not remember the number, restart the experiment. </p>\n    <form>\n      <input name=\"subj\" id=\"subj\" required>\n      <button for=\"subj\" type=\"submit\">Continue</button>\n    </form> --> \n  </div>\n</main>\n\n<footer>\n  <button id =\"b\">Continue</button>\n</footer>\n\n\n\n\n",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "click",
+            "button#b",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "transpose condition",
+              "message": "before:prepare",
+              "code": "/* General structure of the experiment can be found\nin the scripts under Intro Screen!\n*/\n\nwindow.id = this.random.uuid4() \n\n//upload wordlist\n\n\nwindow.uploadWords = [ \"airplane\",\n\"apple\",\n\"bacon\",\n\"badge\",\n\"banana\",\n\"barn\",\n\"barrel\",\n\"basement\",\n\"basket\",\n\"beach\",\n\"bedroom\",\n\"belt\",\n\"bible\",\n\"bike\",\n\"blanket\",\n\"bone\",\n\"boot\",\n\"bowl\",\n\"brain\",\n\"branch\",\n\"bread\",\n\"brick\",\n\"bride\",\n\"bridge\",\n\"bucket\",\n\"buffalo\",\n\"burger\",\n\"bush\",\n\"butler\",\n\"cabin\",\n\"cage\",\n\"camera\",\n\"carpet\",\n\"casino\",\n\"castle\",\n\"cave\",\n\"chair\",\n\"cherry\",\n\"chicken\",\n\"child\",\n\"chin\",\n\"church\",\n\"cigar\",\n\"circus\",\n\"clinic\",\n\"cloud\",\n\"clown\",\n\"coast\",\n\"cocktail\",\n\"concert\",\n\"cookie\",\n\"corn\",\n\"costume\",\n\"couch\",\n\"crown\",\n\"curtain\",\n\"dentist\",\n\"dessert\",\n\"devil\",\n\"diamond\",\n\"dice\",\n\"doctor\",\n\"dog\",\n\"dragon\",\n\"eagle\",\n\"earth\",\n\"elephant\",\n\"elevator\",\n\"empire\",\n\"factory\",\n\"finger\",\n\"flower\",\n\"forest\",\n\"fort\",\n\"frog\",\n\"fruit\",\n\"garden\",\n\"glove\",\n\"goat\",\n\"goose\",\n\"guitar\",\n\"hammer\",\n\"harbor\",\n\"heart\",\n\"highway\",\n\"horn\",\n\"horse\",\n\"house\",\n\"island\",\n\"jeep\",\n\"jewelry\",\n\"jungle\",\n\"knee\",\n\"knife\",\n\"lamp\",\n\"lawn\",\n\"lawyer\",\n\"lemon\",\n\"library\",\n\"lion\",\n\"liver\",\n\"market\",\n\"medal\",\n\"monkey\",\n\"mouse\",\n\"nail\",\n\"nanny\",\n\"needle\",\n\"nest\",\n\"newspaper\",\n\"nurse\",\n\"ocean\",\n\"opera\",\n\"orange\",\n\"palace\",\n\"passport\",\n\"peanut\",\n\"pearl\",\n\"penny\",\n\"phone\",\n\"piano\",\n\"pill\",\n\"pillow\",\n\"pilot\",\n\"pipe\",\n\"pistol\",\n\"pizza\",\n\"planet\",\n\"pole\",\n\"potato\",\n\"priest\",\n\"pumpkin\",\n\"purse\",\n\"rabbit\",\n\"railroad\",\n\"ranch\",\n\"robin\",\n\"robot\",\n\"sandwich\",\n\"satellite\",\n\"school\",\n\"shark\",\n\"sheep\",\n\"shotgun\",\n\"sink\",\n\"skull\",\n\"soda\",\n\"soldier\",\n\"spider\",\n\"stairs\",\n\"statue\",\n\"steak\",\n\"string\",\n\"surgeon\",\n\"sweater\",\n\"table\",\n\"tank\",\n\"taxi\",\n\"tent\",\n\"tiger\",\n\"tire\",\n\"toast\",\n\"tooth\",\n\"towel\",\n\"tower\",\n\"train\",\n\"tunnel\",\n\"turtle\",\n\"underwear\",\n\"universe\",\n\"valley\",\n\"virus\",\n\"waiter\",\n\"wallet\",\n\"whale\",\n\"whistle\",\n\"window\",\n\"wolf\",\n\"worm\",\n\"wrist\"]\n\nwindow.words = this.random.shuffle(window.uploadWords)\n\n//assign words to lists\nwindow.word1_list1 = window.words.slice (0, 32);\nwindow.word1_list2 = window.words.slice (32, 64);\n\n//shuffle words for source-memory task\nwindow.word1_test1 = this.random.shuffle(window.word1_list1);\nwindow.word1_test2 = this.random.shuffle(window.word1_list2);\n\n\n\n\n//alert(subj_stim_type)\n\n//# for each list, define which trials to remember and which to process\nwindow.condition = [\"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\",\"remember\",\"process\"];\n\n// shuffle\nwindow.condition_list1 = this.random.shuffle(window.condition);\nwindow.condition_list2 = this.random.shuffle(window.condition);\nwindow.condition_list3 = this.random.shuffle(window.condition);\n\n// remove process words from first source test\n//window.word1_test1 = [];\n//for (var i=0;i<32;i++) {\n//  if (window.condition_list1[i] == \"remember\") {\n//    window.word1_test1.push(window.word1_list1[i]);\n//  }\n//}\n//window.word1_test1 = this.random.shuffle(window.word1_test1);\n//console.log(window.word1_test1);\n//console.log(window.word1_list1)\n//console.log(window.condition_list1)\n\n\n\n// assign spatial position\nvar spatial_positions = [1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4];\nwindow.spatial_positions_list1 = [];\nwindow.spatial_positions_list2 = [];\n\n// spatial positions List 1\nvar spatial_positions_rem = this.random.shuffle(spatial_positions);\nvar spatial_positions_proc = this.random.shuffle(spatial_positions);\nfor (var i=0; i < 32; i++) {\n  if (window.condition_list1[i] === \"remember\") {\n    window.spatial_positions_list1.push(spatial_positions_rem[0]);\n    spatial_positions_rem.splice(0,1);\n  } else {\n    window.spatial_positions_list1.push(spatial_positions_proc[0]);\n    spatial_positions_proc.splice(0,1);    \n  }\n}\n\n// spatial positions List 1\nvar spatial_positions_rem = this.random.shuffle(spatial_positions);\nvar spatial_positions_proc = this.random.shuffle(spatial_positions);\nfor (var i=0; i < 32; i++) {\n  if (window.condition_list2[i] === \"remember\") {\n    window.spatial_positions_list2.push(spatial_positions_rem[0]);\n    spatial_positions_rem.splice(0,1);\n  } else {\n    window.spatial_positions_list2.push(spatial_positions_proc[0]);\n    spatial_positions_proc.splice(0,1);    \n  }\n}\n\n //Define Counters for lists\n CounterList1 = 0\n CounterList2 = 0\n CounterTest1 = 0\n CounterTest2 = 0\n\n//Define math problems\n window.math_problems = [\"(2 + 3) x 4 = ?\", \"(4 - 3) x 8 = ?\",\"(2 + 5) x 2 = ?\",\"(5 + 3) / 4 = ?\",\"(7 + 8) x 3 = ?\",\"(8 + 8) / 4 = ?\",\"(9 - 5) x 4 = ?\",\"(9 - 3) x 3 = ?\",\"(19 - 4) x 5 = ?\",\"(12 - 3) / 3 = ?\",\"(2 + 6) x 5 = ?\",\"(1 + 7) x 6 = ?\",\"(8 + 3) x 4 = ?\",\"(21 + 12) / 11 = ?\",\"(9 + 3) x 2 = ?\",\"(4 + 3) x 4 = ?\",\"(4 + 4) x 4 = ?\",\"(3 + 9) x 2 = ?\",\"(19 + 11) / 5 = ?\",\"(17 + 23) / 8 = ?\",\"(7 + 2) x 8 = ?\",\"(3 + 6) / 3 = ?\",\"(7 + 13) / 4 = ?\",\"(13 + 23) x 2 = ?\",\"(4 + 3) x 9 = ?\",\"(2 + 2) x 16 = ?\",\"(3 + 3) / 2 = ?\",\"(6 + 6) / 3 = ?\",\"(7 - 4) x 8 = ?\",\"(21 - 9) / 4 = ?\",\"(11 + 23) x 3 = ?\",\"(45 - 23) / 11 = ?\",\"(6 + 6) x 6 = ?\",\"(2 + 2) / 2 = ?\",\"(2 + 2) x 2 = ?\",\"(3 + 3) x 8 = ?\",\"(3 + 3) x 3 = ?\",\"(4 + 2) x 9 = ?\",\"(23 - 17) / 6 = ?\",\"(50 - 23) / 9 = ?\"];\n\nwindow.math_problems = this.random.shuffle(window.math_problems);\n\nwindow.math_problem_number = 0\n\n\n// Kick out participants if they leave the experimental window twice\nwindow.leave_counter = 0;\nwindow.n_leaves = 3;\nwindow.pause = true;\nstudy.options.parameters.validity_check = true;\nwindow.addEventListener(\"visibilitychange\", function() {\n    console.log( document.visibilityState );\n    console.log(pause);\n    if(document.visibilityState === 'hidden' && !pause){\n        leave_counter++\n    }\n    if(leave_counter >= n_leaves){\n        leave_counter = -100;\n        console.log('ending experiment');\n        study.options.parameters.validity_check = false;\n        study.end();\n        alert(\n            'Unfortunately, you have left the tab/ browser windows more than two times. ' +\n            'As instructed in the beginning of the experiment, we therefore have to end this experiment ' +\n            'prematurely and we cannot grant you any credit. ' + \n            'If this was a mistake, please contact us via Prolific.')\n    }\n});\n\nfunction getRandomInt(max) {\n  return Math.floor(Math.random() * Math.floor(max));\n}\n\n\n//group_id = window.subj % 4\ngroup_id = getRandomInt(4)\n\n\n//window.stim_type = [\"words\", \"words\"];\nwindow.btw_cond = [\"remember_all\",\"remember_all\",\"process_all\",\"process_all\"];\nwindow.rem_color = [\"red\", \"blue\",\"red\",\"blue\"];\nwindow.proc_color = [\"blue\", \"red\",\"blue\",\"red\"];\n\nwindow.subj_stim_type = \"words\"\nwindow.subj_btw_cond = window.btw_cond[group_id];\nwindow.subj_rem_color = window.rem_color[group_id];\nwindow.subj_proc_color = window.proc_color[group_id];\n\n\n\n//determine color for each word\nif(window.condition_list1 == \"remember\") {\n  window.color_list1 = window.subj_rem_color;\n } else {\n  window.color_list1 = window.subj_proc_color;\n }\n\nif(window.condition_list2 == \"remember\") {\n  window.color_list2 = window.subj_rem_color;\n } else {\n  window.color_list2 = window.subj_proc_color;\n }\n\nif(window.condition_list3 == \"remember\") {\n  window.color_list3 = window.subj_rem_color;\n } else {\n  window.color_list3 = window.subj_proc_color;\n }\n \n//alert(window.rem_color[group_id])\n"
+            }
+          ],
+          [
+            {
+              "title": "Collect Prolific ID",
+              "message": "run",
+              "code": "if (typeof jatos !== \"undefined\") {\r\n   this.data.prolific_pid = jatos.urlQueryParameters.PROLIFIC_PID;\r\n   this.data.pstudy_id = jatos.urlQueryParameters.STUDY_ID;\r\n   this.data.psession_id = jatos.urlQueryParameters.SESSION_ID;\r\n}\r\n"
+            }
+          ]
+        ]
+      },
+      "title": "Collect ID",
+      "_tab": "Scripts"
+    },
+    "3": {
+      "id": "3",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<main>\nTOO FAST! Please respond carefully\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "too fast",
+      "_tab": "Scripts",
+      "timeout": "4000",
+      "skipCondition": "${ (subj_stim_type == \"pairs\") || (window.fast > '500')} ",
+      "tardy": true,
+      "skip": false
+    },
+    "5": {
+      "id": "5",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<main>\nTOO FAST! Please respond carefully\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "too fast",
+      "_tab": "Behavior",
+      "timeout": "4000",
+      "skipCondition": "${(window.fast > '500')} ",
+      "tardy": true,
+      "skip": false
+    },
+    "6": {
+      "id": "6",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "General instructions"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\r\n#div1{width: 800px;text-align: left;}\r\nheader{  padding: 5px;  height: 120px;}\r\nfooter{  padding: 5px;  height: 100px;}\r\ndt{line-height: 2;font-weight: bold;}\r\ntable, th, td {  border: 1px solid black;\r\n  border-collapse: collapse;  background-color: #ecf2f9;}\r\nth, td {  padding: 1px;}\r\n</style>\r\n\r\n<p> In this experiment you will see a number of words that refer to concrete objects. Please judge for each object whether it is smaller or larger than a football. If the object is larger than a football, please press the \"UP\" arrow key on your keyboard. If the object is smaller than a football, please press the \"DOWN\" arrow key.</p>\r\n\r\n<p> Words will be shown in different locations on the screen. In addition to judging the size of the objects, please try to remember each word and its location for a later memory test. You will see two lists of words, and after each list you will have to write all the words that you can recall from the list. Then, your memory for the locations will be tested.</p>\r\n\r\n"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "General instructions (remember)",
+      "_tab": "Behavior",
+      "skipCondition": "${ (window.subj_btw_cond != \"remember_all\")}"
+    },
+    "10": {
+      "id": "10",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "General instructions"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\r\n#div1{width: 800px;text-align: left;}\r\nheader{  padding: 5px;  height: 120px;}\r\nfooter{  padding: 5px;  height: 100px;}\r\ndt{line-height: 2;font-weight: bold;}\r\ntable, th, td {  border: 1px solid black;\r\n  border-collapse: collapse;  background-color: #ecf2f9;}\r\nth, td {  padding: 1px;}\r\n</style>\r\n\r\n<p> In this experiment you will see a number of words that refer to concrete objects. Please judge for each object whether it is smaller or larger than a football. If the object is larger than a football, please press the \"UP\" arrow key on your keyboard. If the object is smaller than a football, please press the \"DOWN\" arrow key.</p>\r\n\r\n<p> You will see two lists of words, and after each list you will have to solve a series of simple equations before moving on to the next list.</p>\r\n\r\n"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "General instructions (process)",
+      "_tab": "Behavior",
+      "skipCondition": "${ (window.subj_btw_cond != \"process_all\")}"
+    },
+    "11": {
+      "id": "11",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{\nwidth: 900px;\ntext-align:  content-horizontal-center;\n}\n</style>\n\n<main> The previous list was for practice. Now the real list begins. Please judge the size of the objects. You will no longer see instructions for each word, but your task is the same as in the practice list.\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Instructions list 2 (process)",
+      "_tab": "Content",
+      "skipCondition": "${ (window.subj_btw_cond != \"process_all\")}"
+    },
+    "12": {
+      "id": "12",
+      "type": "lab.html.Screen",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "click",
+            "button#b5",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "index",
+              "message": "run",
+              "code": "window.free_index = 1000\nwindow.stringy = \"\""
+            }
+          ]
+        ]
+      },
+      "title": "Instruction Recall Test2 (process)",
+      "_tab": "Content",
+      "content": "<style>\n#div1{\nwidth: 900px;\ntext-align:  content-horizontal-center;\n}\n</style>\n\n\n<main class=\"content-horizontal-center\">\n  <div id=\"div1\">\n    <p> Now we will test your memory for the words. Please write down all the words you can remember from the last list.</p>\n    <p> An <strong> input field</strong> will appear on the next screen. Please type in the words you can remember. After typing each word, press the <kbd>Enter</kbd> button and the word you typed will appear below the input field. \n    </p>\n    <p> You have 30 seconds time. Please use this time to remember as many of the words as possible. </p>\n    \n  </div>\n</main>\n\n\n<footer> \n  <p>When you have read the instructions and are ready, press <button type=\"submit\" id = \"b5\" form = \"free_recall\" > continue </button>to start the recall test.\n  </p>\n</footer>",
+      "skipCondition": "${ (window.subj_btw_cond != \"process_all\")}"
+    },
+    "13": {
+      "id": "13",
+      "type": "lab.flow.Loop",
+      "children": [
+        "17"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "1726427634",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "32"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "List1",
+      "_tab": "Content",
+      "timeout": "",
+      "_collapsed": false
+    },
+    "15": {
+      "id": "15",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<p>Now we will test your memory for the locations. </p>\n\n<p>On each screen you will see one of the words you were supposed to remember on the top. Below it you will see four squares with the numbers 1, 2, 3 and 4 in them.</p>\n\n<p>Try to remember in which square you saw the word before and press the corresponding key on your keyboard</p>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Instructions Source Test 2 (process)",
+      "_tab": "Behavior",
+      "skipCondition": "${ (window.subj_btw_cond != \"process_all\")}"
+    },
+    "16": {
+      "id": "16",
+      "type": "lab.html.Form",
+      "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n<header>\n<h2> Information on the study and consent form </h2></header>\n\n<main class=\"content-horizontal-center\">\n<form id = \"consent\">\n<div id = \"div1\">\n <span> <b>Please read the information carefully.</b></span>\n<p>\n <dl><dt>Aim of the study</dt>\n <dd>This study examines the mental mechanisms involved in processing words. You will be asked to read English words and carry out several cognitive tasks with them. You will receive instructions about the tasks as you go along.</dd> \n </p> \n <p>\n <dt>Requirements</dt>\n <dd>To participate in this study, you must be between 18-35 years old and you must be a native English speaker.</dd>\n </p>\n<p>\n <dt>Possible advantages and benefits of participating in the study</dt>\n <dd> Participating in the present experiment will provide an important contribution to current cognition research and it offers an interesting insight into how cognition research is conducted.</dd>\n</p>\n<p>\n <dt>Voluntary participation</dt>\n <dd>Your participation in this study is voluntary. You have the right to waive your participation and you have the possibility to revoke your consent at any time and thus to terminate the study prematurely. The withdrawal from the study does not need to be justified.</dd>\n</p>\n<p>\n <dt>Possible disadvantages</dt>\n <dd>There are none known.</dd>\n</p>\n<p>\n <dt>Confidentiality of data</dt>\n <dd>The personal data collected in this study will be made anonymous by means of coding and will only be accessible to experts for scientific evaluation or members of the Ethics Committee of the Faculty of Philosophy of the University of Zurich for testing and control purposes in strict compliance with confidentiality. Subsequent publications of the data are based on mean values of the study results, making it impossible to draw conclusions about individuals.</dd>\n</p>\n\n<p>\n<dt> Duration of the study </dt>\n <dd>The study takes 15 minutes in total.</dd>\n</p>\n\n  <p> <b>If you agree with all the points listed, please check all the following boxes:</b><br> </p>\n   <input type=\"checkbox\" name=\"consent1\" id=\"consent1\" required>\n    <label for=\"consent1\">I confirm that I have read and understood all information on the study.</label><br> \n    <input type=\"checkbox\" name=\"consent2\" id=\"consent2\" required>\n    <label for=\"consent2\">I have taken note that participation in this experiment is voluntary and that I can cancel it at any time and without consequences.</label><br> \n   <input type=\"checkbox\" name=\"consent3\" id=\"consent3\" required>\n    <label for=\"consent3\">I confirm that I am at least 18 years old and want to participate in this study.</label><br> \n   \n</div>\n</form>\n</main>\n\n<footer>\n  <button type=\"submit\" form = \"consent\" > Continue</button>\n</footer>\n",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Informed Consent",
+      "_tab": "Content",
+      "timeout": ""
+    },
+    "17": {
+      "id": "17",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "29",
+        "32",
+        "21",
+        "34",
+        "18"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Trial",
+      "_tab": "Content"
+    },
+    "18": {
+      "id": "18",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "var showMyCounter = CounterList1;\nCounterList1++\n"
+            }
+          ]
+        ]
+      },
+      "title": "LAstStepLoop",
+      "_tab": "Behavior",
+      "timeout": "1"
+    },
+    "19": {
+      "id": "19",
+      "type": "lab.html.Screen",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "click",
+            "button#b5",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "index",
+              "message": "run",
+              "code": "window.free_index = 1000\nwindow.stringy = \"\""
+            }
+          ]
+        ]
+      },
+      "title": "Instruction Recall Test1 ",
+      "_tab": "Behavior",
+      "content": "<style>\n#div1{\nwidth: 900px;\ntext-align:  content-horizontal-center;\n}\n</style>\n\n\n<main class=\"content-horizontal-center\">\n  <div id=\"div1\">\n    <p> Next comes the memory test. First, you have to recall as many of the words you were told to remember as possible. </p>\n    <p> An <strong> input field</strong> will appear on the next screen. Please type in the words you were asked to remember from the previous list. After typing each word, press the <kbd>Enter</kbd> button and the word you typed will appear below the input field. This gives you an overview of which words you have already remembered.</p>\n    <p> You have 30 seconds time. Please use this time to remember as many of the words as possible. After the 30 seconds expire you will automatically continue to the next list.</p>\n    \n  </div>\n</main>\n\n\n<footer> \n  <p>When you have read the instructions and are ready, press <button type=\"submit\" id = \"b5\" form = \"free_recall\" > continue </button>to start the recall test.\n  </p>\n</footer>",
+      "skipCondition": "${ (window.subj_btw_cond == \"process_all\")}"
+    },
+    "20": {
+      "id": "20",
+      "type": "lab.flow.Loop",
+      "children": [
+        "22"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "98769423",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "80"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": []
+      },
+      "title": "Recall Test1",
+      "_tab": "Behavior",
+      "_collapsed": false,
+      "timeout": "30000",
+      "skipCondition": "${ (window.subj_btw_cond == \"process_all\")}"
+    },
+    "21": {
+      "id": "21",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<main>\nTOO FAST! Please respond carefully\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "too fast",
+      "_tab": "Behavior",
+      "timeout": "4000",
+      "skipCondition": "${ (subj_stim_type == \"pairs\") || (window.fast > '500')} ",
+      "tardy": true,
+      "skip": false
+    },
+    "22": {
+      "id": "22",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "23"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": []
+      },
+      "title": "Enter Words",
+      "_tab": "Behavior"
+    },
+    "23": {
+      "id": "23",
+      "type": "lab.html.Form",
+      "content": "<style>\n#div1{width: 900px;text-align:  center;}\n#div2{width: 900px; text-align: left;}\nheader{ padding: 5px; height: 100px;}\nfooter{ padding: 5px; height: 120px;}\nlabel {\n  width:200px;\n  display: inline-block;\n}\n</style>\n\n<script>\n  $(document).keydown(function (e) {\n    var keycode1 = (e.keyCode ? e.keyCode : e.which);\n    if (keycode1 == 0 || keycode1 == 9) {\n        e.preventDefault();\n        e.stopPropagation();\n    }\n});\n</script>\n\n<header>\n  <h2> Try to recall as many words as possible from those which you were supposed to remember: </h2>\n</header>\n\n\n<main class=\"content-horizontal-center\">\n  <form>\n    <div id = \"div1\">\n      <input type = \"text\" name=\"recall\" id= \"recall\" required\n       onload=\"this.select();\" placeholder=\"Type in word\">\n    </div>\n    <div id = \"div2\">\n      <p> \n        ${window.stringy}\n      </p>\n    </div>\n\n    \n  </form>\n</main>\n\n<footer>\n  <p> After 30 seconds it will continue automatically.</p>\n\n</footer>",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "enter",
+            "keypress",
+            "#recall",
+            "Enter"
+          ],
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "add strings",
+              "message": "end",
+              "code": "window.word = document.getElementById(\"recall\").value\n\nwindow.stringy = stringy + word + ', '\n\nthis.data.typed_word = word\nthis.data.trial = free_index\n\nif (this.data.response == \"submit\") {\n  this.parent.end()\n  this.parent.parent.end()\n}\n\n++window.free_index"
+            }
+          ],
+          [
+            {
+              "title": "set cursor into the input field",
+              "message": "run",
+              "code": "// Credits: http://blog.vishalon.net/index.php/javascript-getting-and-setting-caret-position-in-textarea/\nfunction setCaretPosition(ctrl, pos) {\n  // Modern browsers\n  if (ctrl.setSelectionRange) {\n    ctrl.focus();\n    ctrl.setSelectionRange(pos, pos);\n  \n  // IE8 and below\n  } else if (ctrl.createTextRange) {\n    var range = ctrl.createTextRange();\n    range.collapse(true);\n    range.moveEnd('character', pos);\n    range.moveStart('character', pos);\n    range.select();\n  }\n}\n\n// Set the cursor position of the \"#test-input\" element to the end when the page loads\nvar input = document.getElementById('recall');\nsetCaretPosition(input, input.value.length);"
+            }
+          ]
+        ]
+      },
+      "title": "Typing",
+      "_tab": "Content",
+      "tardy": true
+    },
+    "25": {
+      "id": "25",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "Thank you!",
+              "content": "Thank you for participating in the experiment. Please answer these final questions truthfully - your responses will not affect your compensation."
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "radio",
+              "options": [
+                {
+                  "label": "Yes",
+                  "coding": "yes"
+                },
+                {
+                  "label": "No",
+                  "coding": "No"
+                }
+              ],
+              "label": "Did you expect your memory to be tested at the end?",
+              "name": "expect_test"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "radio",
+              "options": [
+                {
+                  "label": "Yes, I used external aid",
+                  "coding": "Yes"
+                },
+                {
+                  "label": "No, I did not use external aid",
+                  "coding": "No"
+                }
+              ],
+              "label": "If you expected the memory test, did you use any aid to remember the words (e.g., by writing them down on a piece of paper or in a computer file)?",
+              "name": "use_help"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Click here to confirm your participation to Prolific",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Thanks (proc)",
+      "_tab": "Content",
+      "skipCondition": "${(window.subj_btw_cond != \"process_all\")}"
+    },
+    "26": {
+      "id": "26",
+      "type": "lab.flow.Loop",
+      "children": [
+        "27"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "98769423",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "80"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": []
+      },
+      "title": "Recall Test2",
+      "_tab": "Behavior",
+      "_collapsed": false,
+      "timeout": "30000"
+    },
+    "27": {
+      "id": "27",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "28"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": []
+      },
+      "title": "Enter Words",
+      "_tab": "Behavior"
+    },
+    "28": {
+      "id": "28",
+      "type": "lab.html.Form",
+      "content": "<style>\n#div1{width: 900px;text-align:  center;}\n#div2{width: 900px; text-align: left;}\nheader{ padding: 5px; height: 100px;}\nfooter{ padding: 5px; height: 120px;}\nlabel {\n  width:200px;\n  display: inline-block;\n}\n</style>\n\n<script>\n  $(document).keydown(function (e) {\n    var keycode1 = (e.keyCode ? e.keyCode : e.which);\n    if (keycode1 == 0 || keycode1 == 9) {\n        e.preventDefault();\n        e.stopPropagation();\n    }\n});\n</script>\n\n<header>\n  <h2> Try to recall as many words as possible from the previous list:</h2>\n</header>\n\n\n<main class=\"content-horizontal-center\">\n  <form>\n    <div id = \"div1\">\n      <input type = \"text\" name=\"recall\" id= \"recall\" required\n       onload=\"this.select();\" placeholder=\"Type in word\">\n    </div>\n    <div id = \"div2\">\n      <p> \n        ${window.stringy}\n      </p>\n    </div>\n\n    \n  </form>\n</main>\n\n<footer>\n  <p> After 30 seconds it will continue automatically.</p>\n\n</footer>",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "enter",
+            "keypress",
+            "#recall",
+            "Enter"
+          ],
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "add strings",
+              "message": "end",
+              "code": "window.word = document.getElementById(\"recall\").value\n\nwindow.stringy = stringy + word + ', '\n\nthis.data.typed_word = word\nthis.data.trial = free_index\n\nif (this.data.response == \"submit\") {\n  this.parent.end()\n  this.parent.parent.end()\n}\n\n++window.free_index"
+            }
+          ],
+          [
+            {
+              "title": "set cursor into the input field",
+              "message": "run",
+              "code": "// Credits: http://blog.vishalon.net/index.php/javascript-getting-and-setting-caret-position-in-textarea/\nfunction setCaretPosition(ctrl, pos) {\n  // Modern browsers\n  if (ctrl.setSelectionRange) {\n    ctrl.focus();\n    ctrl.setSelectionRange(pos, pos);\n  \n  // IE8 and below\n  } else if (ctrl.createTextRange) {\n    var range = ctrl.createTextRange();\n    range.collapse(true);\n    range.moveEnd('character', pos);\n    range.moveStart('character', pos);\n    range.select();\n  }\n}\n\n// Set the cursor position of the \"#test-input\" element to the end when the page loads\nvar input = document.getElementById('recall');\nsetCaretPosition(input, input.value.length);"
+            }
+          ]
+        ]
+      },
+      "title": "Typing",
+      "_tab": "Content",
+      "tardy": true
+    },
+    "29": {
+      "id": "29",
+      "type": "lab.html.Form",
+      "content": "",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// remember or process\nwindow.trial_condition = window.condition_list1[CounterList1]\n\nif (trial_condition == \"process\") {\n  window.trial_color = window.subj_proc_color\n} else {\n  window.trial_color = window.subj_rem_color\n}\n// save what color was used\nwindow.this_color = window.color_list1"
+            }
+          ]
+        ]
+      },
+      "title": "Blank",
+      "_tab": "Content",
+      "timeout": "250"
+    },
+    "32": {
+      "id": "32",
+      "type": "lab.html.Screen",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "yes",
+            "keydown",
+            "",
+            "ArrowUp"
+          ],
+          [
+            "no",
+            "keydown",
+            "",
+            "ArrowDown"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word1\r\nvar myWord11 = window.word1_list1[CounterList1]\r\nvar spatial_position = window.spatial_positions_list1[CounterList1]\r\n\r\n// get element to display word\r\nvar word1_L1 = document.getElementById(spatial_position); \r\nword1_L1.textContent = myWord11\r\n\r\n// style how to display\r\nif (trial_condition == \"remember\") {\r\n  document.getElementById(\"rem\").style.display = \"block\"\r\n} else {\r\n  document.getElementById(\"rem\").style.display = \"none\"\r\n}\r\n\r\n// save data\r\nthis.data.trial_condition = condition_list1[CounterList1]\r\nthis.data.presented_word1 = myWord11\r\nthis.data.presented_color = trial_color\r\nthis.data.presented_position = spatial_position\r\nthis.data.btw_cond = subj_btw_cond\r\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "window.fast = this.data.duration"
+            }
+          ]
+        ]
+      },
+      "title": "words",
+      "content": "<style>\r\n.outer {\r\n  display: table;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.middle {\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n}\r\n\r\n.inner {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 800px;\r\n  /*whatever width you want*/\r\n}\r\n\r\n  div.myTable {\r\n  border: 20px solid #AAAAAA;\r\n  background-color: #FFFFFF;\r\n  width: 600px;\r\n  height: 200px;\r\n  text-align: center;\r\n  margin: auto;\r\n}\r\n\r\n.divTable.myTable .divTableCell, .divTable.myTable .divTableHead {\r\n  width: 300px;\r\n  height: 100px;\r\n  padding: 35px 0px;\r\n}\r\n\r\n.divTable.myTable .divTableCell1 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell2 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell3 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell4 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n\r\n.divTable.myTable .divTableBody .divTableCell {\r\n  font-size: 25px;\r\n  font-weight: bold;\r\n}\r\n.myTable .tableFootStyle {\r\n  font-size: 14px;\r\n}\r\n.myTable .tableFootStyle .links {\r\n\t text-align: right;\r\n}\r\n.myTable .tableFootStyle .links a{\r\n  display: inline-block;\r\n  background: #1C6EA4;\r\n  color: #FFFFFF;\r\n  padding: 2px 8px;\r\n  border-radius: 5px;\r\n}\r\n.myTable.outerTableFooter {\r\n  border-top: none;\r\n}\r\n.myTable.outerTableFooter .tableFootStyle {\r\n  padding: 3px 5px; \r\n}\r\n/* DivTable.com */\r\n.divTable{ display: table; }\r\n.divTableRow { display: table-row; }\r\n.divTableHeading { display: table-header-group;}\r\n.divTableCell, .divTableHead { display: table-cell;}\r\n.divTableHeading { display: table-header-group;}\r\n.divTableFoot { display: table-footer-group;}\r\n.divTableBody { display: table-row-group;}\r\n</style>\r\n<main>\r\n<div class=\"outer\">\r\n<div class=\"middle\">\r\n<div id = \"rem\" class=\"inner\"> \r\n<p> &nbsp;\r\n</p>\r\n</div>\r\n<div class=\"divTable myTable inner\">\r\n<div class=\"divTableBody\">\r\n<div class=\"divTableRow\">\r\n<div class=\"divTableCell1 divTableCell\" id=1><p></p></div>\r\n<div class=\"divTableCell2 divTableCell\" id=2><p></p></div>\r\n</div>\r\n<div class=\"divTableRow\">\r\n<div class=\"divTableCell3 divTableCell\" id=3><p></p></div>\r\n<div class=\"divTableCell4 divTableCell\" id=4><p></p></div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"inner\">\r\n<p> &nbsp;\r\n</p>\r\n<p> Is this object larger than a football? </p>\r\n<p>For <strong>yes</strong> please press <kbd>↑</kbd> and for</p>\r\n<p><strong>no</strong> please press <kbd>↓</kbd>. </p>\r\n</div>\r\n</div>\r\n</div>\r\n</main>\r\n",
+      "_tab": "Scripts",
+      "tardy": true
+    },
+    "34": {
+      "id": "34",
+      "type": "lab.html.Screen",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": []
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word1\r\nvar myWord11 = window.word1_list1[CounterList1]\r\nvar spatial_position = window.spatial_positions_list1[CounterList1]\r\n\r\n// get element to display word\r\nvar word1_L1 = document.getElementById(spatial_position); \r\n//word1_L1.textContent = myWord11\r\nword1_L1.style.border = \"20px solid \" + window.trial_color\r\n\r\n\r\n// style how to display\r\nif (trial_condition == \"xxx\") {\r\n  document.getElementById(\"rem\").style.display = \"block\"\r\n} else {\r\n  document.getElementById(\"rem\").style.display = \"none\"\r\n}\r\n\r\n// save data\r\nthis.data.trial_condition = condition_list1[CounterList1]\r\nthis.data.presented_word1 = myWord11\r\nthis.data.presented_color = trial_color\r\nthis.data.presented_position = spatial_position\r\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "window.fast = this.data.duration"
+            }
+          ]
+        ]
+      },
+      "title": "words_rem",
+      "content": "<style>\r\n.outer {\r\n  display: table;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.middle {\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n}\r\n\r\n.inner {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 800px;\r\n  /*whatever width you want*/\r\n}\r\n\r\n  div.myTable {\r\n  border: 20px solid #AAAAAA;\r\n  background-color: #FFFFFF;\r\n  width: 600px;\r\n  height: 200px;\r\n  text-align: center;\r\n  margin: auto;\r\n}\r\n\r\n.divTable.myTable .divTableCell, .divTable.myTable .divTableHead {\r\n  width: 300px;\r\n  height: 100px;\r\n  padding: 35px 0px;\r\n}\r\n\r\n.divTable.myTable .divTableCell1 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell2 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell3 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell4 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n\r\n.divTable.myTable .divTableBody .divTableCell {\r\n  font-size: 25px;\r\n  font-weight: bold;\r\n}\r\n.myTable .tableFootStyle {\r\n  font-size: 14px;\r\n}\r\n.myTable .tableFootStyle .links {\r\n\t text-align: right;\r\n}\r\n.myTable .tableFootStyle .links a{\r\n  display: inline-block;\r\n  background: #1C6EA4;\r\n  color: #FFFFFF;\r\n  padding: 2px 8px;\r\n  border-radius: 5px;\r\n}\r\n.myTable.outerTableFooter {\r\n  border-top: none;\r\n}\r\n.myTable.outerTableFooter .tableFootStyle {\r\n  padding: 3px 5px; \r\n}\r\n\r\n#rem {\r\n  font-weight: bold;\r\n}\r\n\r\n/* DivTable.com */\r\n.divTable{ display: table; }\r\n.divTableRow { display: table-row; }\r\n.divTableHeading { display: table-header-group;}\r\n.divTableCell, .divTableHead { display: table-cell;}\r\n.divTableHeading { display: table-header-group;}\r\n.divTableFoot { display: table-footer-group;}\r\n.divTableBody { display: table-row-group;}\r\n</style>\r\n<main>\r\n<div class=\"outer\">\r\n<div class=\"middle\">\r\n<div id = \"rem\" class=\"inner\"> \r\n<p> Remember for the Test!\r\n</p>\r\n</div>\r\n<div class=\"divTable myTable inner\">\r\n<div class=\"divTableBody\">\r\n<div class=\"divTableRow\">\r\n<div class=\"divTableCell1 divTableCell\" id=1><p></p></div>\r\n<div class=\"divTableCell2 divTableCell\" id=2><p></p></div>\r\n</div>\r\n<div class=\"divTableRow\">\r\n<div class=\"divTableCell3 divTableCell\" id=3><p></p></div>\r\n<div class=\"divTableCell4 divTableCell\" id=4><p></p></div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"inner\">\r\n<p> &nbsp;\r\n</p>\r\n<p> &nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n</div>\r\n</main>\r\n",
+      "_tab": "Scripts",
+      "tardy": true,
+      "skipCondition": "${(window.fast <= '500')}",
+      "skip": false,
+      "timeout": "3000"
+    },
+    "35": {
+      "id": "35",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<p>Now we will test your memory for the locations. </p>\n\n<p>On each screen you will see one of the words you were supposed to remember on the top. Below it you will see four squares with the numbers 1, 2, 3 and 4 in them.</p>\n\n<p>Try to remember in which square you saw the word before and press the corresponding key on your keyboard</p>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Instructions Source Test 1",
+      "_tab": "Content",
+      "skipCondition": "${ (window.subj_btw_cond == \"process_all\")}"
+    },
+    "37": {
+      "id": "37",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n<main> Thank you for paying attention! Now we can start with the experiment. Please press continue.</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Attention alright",
+      "_tab": "Scripts"
+    },
+    "39": {
+      "id": "39",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: center;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n<header> <p>This first list is only for training to get familiar with the task. </p>\n<p>\nReady? Press <kbd> space </kbd> to begin.\n</p>\n</header>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "start",
+            "keypress",
+            "",
+            "Space"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Ready",
+      "_tab": "Behavior"
+    },
+    "40": {
+      "id": "40",
+      "type": "lab.canvas.Screen",
+      "content": [
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 0,
+          "top": 0,
+          "width": 18.69,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "+",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "4969",
+          "styles": {}
+        }
+      ],
+      "viewport": [
+        800,
+        600
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "window.pause = false"
+            }
+          ]
+        ]
+      },
+      "title": "Fixation Cross",
+      "_tab": "Content",
+      "timeout": "500"
+    },
+    "46": {
+      "id": "46",
+      "type": "lab.flow.Loop",
+      "children": [
+        "60"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "532",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw-shuffle",
+        "n": "32"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Source test 1",
+      "_tab": "Content",
+      "skipCondition": "${ (window.subj_btw_cond == \"process_all\")}"
+    },
+    "47": {
+      "id": "47",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{\nwidth: 900px;\ntext-align:  content-horizontal-center;\n}\n</style>\n\n<h2>Ready for the second block? Press <kbd> space </kbd> to begin.</h2>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "start",
+            "keypress",
+            "",
+            "Space"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Ready",
+      "_tab": "Scripts"
+    },
+    "48": {
+      "id": "48",
+      "type": "lab.canvas.Screen",
+      "content": [
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 0,
+          "top": 0,
+          "width": 18.69,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "+",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "4969",
+          "styles": {}
+        }
+      ],
+      "viewport": [
+        800,
+        600
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Fixation Cross",
+      "_tab": "Behavior",
+      "timeout": "500"
+    },
+    "57": {
+      "id": "57",
+      "type": "lab.canvas.Screen",
+      "content": [],
+      "viewport": [
+        800,
+        600
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Blank",
+      "_tab": "Content",
+      "timeout": "1000"
+    },
+    "59": {
+      "id": "59",
+      "type": "lab.canvas.Screen",
+      "content": [
+        {
+          "type": "rect",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": -75,
+          "top": -14,
+          "width": 150,
+          "height": 100,
+          "fill": "#ffffff",
+          "stroke": "#aaaaaa",
+          "strokeWidth": 5,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "rx": 0,
+          "ry": 0,
+          "id": "447"
+        },
+        {
+          "type": "rect",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 75,
+          "top": -14,
+          "width": 150,
+          "height": 100,
+          "fill": "#ffffff",
+          "stroke": "#aaaaaa",
+          "strokeWidth": 5,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "rx": 0,
+          "ry": 0,
+          "id": "448"
+        },
+        {
+          "type": "rect",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": -75,
+          "top": 86,
+          "width": 150,
+          "height": 100,
+          "fill": "#ffffff",
+          "stroke": "#aaaaaa",
+          "strokeWidth": 5,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "rx": 0,
+          "ry": 0,
+          "id": "449"
+        },
+        {
+          "type": "rect",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 75,
+          "top": 86,
+          "width": 150,
+          "height": 100,
+          "fill": "#ffffff",
+          "stroke": "#aaaaaa",
+          "strokeWidth": 5,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "rx": 0,
+          "ry": 0,
+          "id": "450"
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": -75,
+          "top": -11,
+          "width": 17.8,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "1",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "451",
+          "styles": {}
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 75,
+          "top": -12,
+          "width": 17.8,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "2",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "452",
+          "styles": {}
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": -75,
+          "top": 85,
+          "width": 17.8,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "3",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "453",
+          "styles": {}
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 75,
+          "top": 88,
+          "width": 17.8,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "4",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "454",
+          "styles": {}
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 0,
+          "top": -111,
+          "width": 291.75,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "${window.test_word}",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "537",
+          "styles": {}
+        }
+      ],
+      "viewport": [
+        800,
+        600
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "1",
+            "keydown",
+            "",
+            "1"
+          ],
+          [
+            "2",
+            "keydown",
+            "",
+            "2"
+          ],
+          [
+            "3",
+            "keydown",
+            "",
+            "3"
+          ],
+          [
+            "4",
+            "keydown",
+            "",
+            "4"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "before:prepare",
+              "code": "window.test_word = window.word1_test1[CounterTest1]\r\nthis.data.test_word = window.test_word"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "window.fast = this.data.duration"
+            }
+          ]
+        ]
+      },
+      "title": "Screen",
+      "_tab": "Scripts",
+      "tardy": true
+    },
+    "60": {
+      "id": "60",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "57",
+        "59",
+        "68",
+        "62"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Trial"
+    },
+    "62": {
+      "id": "62",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "CounterTest1++"
+            }
+          ]
+        ]
+      },
+      "title": "LastStepLoop",
+      "_tab": "Scripts",
+      "timeout": "1"
+    },
+    "63": {
+      "id": "63",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{\nwidth: 900px;\ntext-align:  content-horizontal-center;\n}\n</style>\n\n<main> The previous list was for practice. Now the real list begins. Please judge the size of the objects and remember each word and its location. You will no longer see instructions for each word, but your task is the same as in the practice list.\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Instructions list 2 (remember)",
+      "_tab": "Behavior",
+      "skipCondition": "${ (window.subj_btw_cond != \"remember_all\")}"
+    },
+    "64": {
+      "id": "64",
+      "type": "lab.flow.Loop",
+      "children": [
+        "65"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "17264264326",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "32"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "List2",
+      "_tab": "Content",
+      "timeout": "",
+      "_collapsed": false
+    },
+    "65": {
+      "id": "65",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "66",
+        "67",
+        "3",
+        "69",
+        "70"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Trial",
+      "_tab": "Content"
+    },
+    "66": {
+      "id": "66",
+      "type": "lab.html.Form",
+      "content": "",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "window.trial_condition = window.condition_list2[CounterList2]\nif (trial_condition == \"process\") {\n  window.trial_color = window.subj_proc_color\n} else {\n  window.trial_color = window.subj_rem_color\n}\n\n\nwindow.this_color = window.color_list2\n\nwindow.exception = \"no\"\n\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "Blank",
+      "_tab": "Scripts",
+      "timeout": "250"
+    },
+    "67": {
+      "id": "67",
+      "type": "lab.html.Screen",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "yes",
+            "keydown",
+            "",
+            "ArrowUp"
+          ],
+          [
+            "no",
+            "keydown",
+            "",
+            "ArrowDown"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word1\r\nvar myWord11 = window.word1_list2[CounterList2]\r\nvar spatial_position = window.spatial_positions_list2[CounterList2]\r\n\r\n// get element to display word\r\nvar word1_L1 = document.getElementById(spatial_position); \r\nword1_L1.textContent = myWord11\r\n\r\n// style how to display\r\nif (trial_condition == \"remember\") {\r\n  document.getElementById(\"rem\").style.display = \"block\"\r\n} else {\r\n  document.getElementById(\"rem\").style.display = \"none\"\r\n}\r\n\r\n// save data\r\nthis.data.trial_condition = condition_list2[CounterList2]\r\nthis.data.presented_word1 = myWord11\r\nthis.data.presented_color = trial_color\r\nthis.data.presented_position = spatial_position\r\nthis.data.btw_cond = subj_btw_cond\r\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "window.fast = this.data.duration"
+            }
+          ]
+        ]
+      },
+      "title": "words",
+      "content": "<style>\r\n.outer {\r\n  display: table;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.middle {\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n}\r\n\r\n.inner {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 800px;\r\n  /*whatever width you want*/\r\n}\r\n\r\n  div.myTable {\r\n  border: 20px solid #AAAAAA;\r\n  background-color: #FFFFFF;\r\n  width: 600px;\r\n  height: 200px;\r\n  text-align: center;\r\n  margin: auto;\r\n}\r\n\r\n.divTable.myTable .divTableCell, .divTable.myTable .divTableHead {\r\n  width: 300px;\r\n  height: 100px;\r\n  padding: 35px 0px;\r\n}\r\n\r\n.divTable.myTable .divTableCell1 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell2 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell3 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell4 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n\r\n.divTable.myTable .divTableBody .divTableCell {\r\n  font-size: 25px;\r\n  font-weight: bold;\r\n}\r\n.myTable .tableFootStyle {\r\n  font-size: 14px;\r\n}\r\n.myTable .tableFootStyle .links {\r\n\t text-align: right;\r\n}\r\n.myTable .tableFootStyle .links a{\r\n  display: inline-block;\r\n  background: #1C6EA4;\r\n  color: #FFFFFF;\r\n  padding: 2px 8px;\r\n  border-radius: 5px;\r\n}\r\n.myTable.outerTableFooter {\r\n  border-top: none;\r\n}\r\n.myTable.outerTableFooter .tableFootStyle {\r\n  padding: 3px 5px; \r\n}\r\n/* DivTable.com */\r\n.divTable{ display: table; }\r\n.divTableRow { display: table-row; }\r\n.divTableHeading { display: table-header-group;}\r\n.divTableCell, .divTableHead { display: table-cell;}\r\n.divTableHeading { display: table-header-group;}\r\n.divTableFoot { display: table-footer-group;}\r\n.divTableBody { display: table-row-group;}\r\n</style>\r\n<main>\r\n<div class=\"outer\">\r\n<div class=\"middle\">\r\n<div id = \"rem\" class=\"inner\"> \r\n<p> &nbsp;\r\n</p>\r\n</div>\r\n<div class=\"divTable myTable inner\">\r\n<div class=\"divTableBody\">\r\n<div class=\"divTableRow\">\r\n<div class=\"divTableCell1 divTableCell\" id=1><p></p></div>\r\n<div class=\"divTableCell2 divTableCell\" id=2><p></p></div>\r\n</div>\r\n<div class=\"divTableRow\">\r\n<div class=\"divTableCell3 divTableCell\" id=3><p></p></div>\r\n<div class=\"divTableCell4 divTableCell\" id=4><p></p></div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"inner\">\r\n<p> &nbsp;\r\n</p>\r\n<p> &nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n</div>\r\n</main>\r\n",
+      "_tab": "Scripts",
+      "tardy": true
+    },
+    "68": {
+      "id": "68",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<main>\nTOO FAST! Please respond carefully\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "too fast",
+      "_tab": "Behavior",
+      "timeout": "4000",
+      "skipCondition": "${(window.fast > '500')} ",
+      "tardy": true,
+      "skip": false
+    },
+    "69": {
+      "id": "69",
+      "type": "lab.html.Screen",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": []
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word1\r\nvar myWord11 = window.word1_list2[CounterList2]\r\nvar spatial_position = window.spatial_positions_list2[CounterList2]\r\n\r\n// get element to display word\r\nvar word1_L1 = document.getElementById(spatial_position); \r\n//word1_L1.textContent = myWord11\r\nword1_L1.style.border = \"20px solid \" + window.trial_color\r\n\r\n\r\n// style how to display\r\nif (trial_condition == \"remember\") {\r\n  document.getElementById(\"rem\").style.display = \"block\"\r\n} else {\r\n  document.getElementById(\"rem\").style.display = \"none\"\r\n}\r\n\r\n// save data\r\nthis.data.trial_condition = condition_list2[CounterList2]\r\nthis.data.presented_word1 = myWord11\r\nthis.data.presented_color = trial_color\r\nthis.data.presented_position = spatial_position\r\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "window.fast = this.data.duration"
+            }
+          ]
+        ]
+      },
+      "title": "words_rem",
+      "content": "<style>\r\n.outer {\r\n  display: table;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 0;\r\n  height: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.middle {\r\n  display: table-cell;\r\n  vertical-align: middle;\r\n}\r\n\r\n.inner {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 800px;\r\n  /*whatever width you want*/\r\n}\r\n\r\n  div.myTable {\r\n  border: 20px solid #AAAAAA;\r\n  background-color: #FFFFFF;\r\n  width: 600px;\r\n  height: 200px;\r\n  text-align: center;\r\n  margin: auto;\r\n}\r\n\r\n.divTable.myTable .divTableCell, .divTable.myTable .divTableHead {\r\n  width: 300px;\r\n  height: 100px;\r\n  padding: 35px 0px;\r\n}\r\n\r\n.divTable.myTable .divTableCell1 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell2 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell3 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n.divTable.myTable .divTableCell4 {\r\n  border: 20px solid #AAAAAA;\r\n}\r\n\r\n\r\n.divTable.myTable .divTableBody .divTableCell {\r\n  font-size: 25px;\r\n  font-weight: bold;\r\n}\r\n.myTable .tableFootStyle {\r\n  font-size: 14px;\r\n}\r\n.myTable .tableFootStyle .links {\r\n\t text-align: right;\r\n}\r\n.myTable .tableFootStyle .links a{\r\n  display: inline-block;\r\n  background: #1C6EA4;\r\n  color: #FFFFFF;\r\n  padding: 2px 8px;\r\n  border-radius: 5px;\r\n}\r\n.myTable.outerTableFooter {\r\n  border-top: none;\r\n}\r\n.myTable.outerTableFooter .tableFootStyle {\r\n  padding: 3px 5px; \r\n}\r\n\r\n#rem {\r\n  font-weight: bold;\r\n}\r\n\r\n/* DivTable.com */\r\n.divTable{ display: table; }\r\n.divTableRow { display: table-row; }\r\n.divTableHeading { display: table-header-group;}\r\n.divTableCell, .divTableHead { display: table-cell;}\r\n.divTableHeading { display: table-header-group;}\r\n.divTableFoot { display: table-footer-group;}\r\n.divTableBody { display: table-row-group;}\r\n</style>\r\n<main>\r\n<div class=\"outer\">\r\n<div class=\"middle\">\r\n<div id = \"rem\" class=\"inner\"> \r\n<p> &nbsp;\r\n</p>\r\n</div>\r\n<div class=\"divTable myTable inner\">\r\n<div class=\"divTableBody\">\r\n<div class=\"divTableRow\">\r\n<div class=\"divTableCell1 divTableCell\" id=1><p></p></div>\r\n<div class=\"divTableCell2 divTableCell\" id=2><p></p></div>\r\n</div>\r\n<div class=\"divTableRow\">\r\n<div class=\"divTableCell3 divTableCell\" id=3><p></p></div>\r\n<div class=\"divTableCell4 divTableCell\" id=4><p></p></div>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"inner\">\r\n<p> &nbsp;\r\n</p>\r\n<p> &nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n</div>\r\n</div>\r\n</div>\r\n</main>\r\n",
+      "_tab": "Content",
+      "tardy": true,
+      "skipCondition": "${(window.fast <= '500')}",
+      "skip": false,
+      "timeout": "3000"
+    },
+    "70": {
+      "id": "70",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "var showMyCounter = CounterList2;\nCounterList2++\n"
+            }
+          ]
+        ]
+      },
+      "title": "LAstStepLoop",
+      "_tab": "Scripts",
+      "timeout": "1"
+    },
+    "71": {
+      "id": "71",
+      "type": "lab.html.Form",
+      "content": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    .wrapper{\n      display: grid;\n      grid-template-rows: 33% 33% 33%;\n      background-color: white;\n      text-align: center;\n      align-items: center;\n      padding: 10px 0;\n      font-size: 30px;\n    }\n\n    .my_header{\n      display: grid;\n      grid-template-columns: 70% 30%;\n      grid-auto-rows: 130px;\n      background-color: white;\n      font-size: 26px;\n    }\n\n    .q_mark{\n      background-color: white;\n      align-items: center;\n    }\n\n    .boxes{\n      display: grid;\n      grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;\n      background-color: white;\n      text-align: center;\n\n    }\n\n    .inputs{\n      display:grid;\n      grid-template-columns: 50% 50%;\n      text-align: center;\n    }\n    \n    input{\n      padding: 1px; \n      margin: 0px 0;\n      box-sizing: border-box;\n      font-size : 16pt  \n    }\n\n    .box{\n      display: grid;\n      background-color: white;\n      border: 5px solid black;\n      width:180px;\n      height:80px;\n      line-height: 80px;\n      padding: 5px;\n      margin: 10px 0;\n      font-size : 20pt \n  \n    }\n\n    .my_footer{\n      position:absolute;\n      bottom:0;\n      width:100%;\n      height:60px; \n      background:white;\n      font-size : 20pt\n      text-align: center;\n    }\n\n    </style>\n</head>\n\n<body>\n  <div class = \"my_header content-horizontal-left\">\n    <div> \n      <p style=\"line-height: 120%\">Please solve the arithmetic problems below. </p>\n    </div>\n\n    <div class = \"q_mark content-horizontal-center\">\n\n    </div>\n  </div>\n  \n  <div class = \"wrapper\">\n\n    <div class = \"boxes\" id=\"i3\">\n      <div class = \"box\" id=\"box01\">\n      </div>\n      <div class = \"box\" id=\"box02\">\n      </div>\n      <div class = \"box\" id=\"box03\">\n      </div>\n      <div class = \"box\" id=\"box04\">\n      </div>\n      <div class = \"box\" id=\"box05\">\n      </div>\n      <div class = \"box\" id=\"box06\">\n      </div>\n      <div class = \"box\" id=\"box07\">\n      </div>\n    </div>\n\n    <div>\n      <br>\n      <br>\n      <br>\n      <label id = \"math\" for=\"fname\"></label>\n      <input type=\"text\" id=\"fname\" name=\"fname\" font-size: 30px;>\n    </div>\n\n    <div class=\"boxes\">\n    </div>\n  </div>\n\n  <div class = \"my_footer content-horizontal-center\">\n    <p>Type the number and press <kbd>Enter</kbd></p>\n  </div>\n  </body>\n</html>",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "keydown",
+            "",
+            "Enter"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "\r\n// hide the boxes\r\ndocument.getElementById('box01').style.display='none';\r\ndocument.getElementById('box02').style.display='none';\r\ndocument.getElementById('box03').style.display='none';\r\ndocument.getElementById('box04').style.display='none';\r\ndocument.getElementById('box05').style.display='none';\r\ndocument.getElementById('box06').style.display='none';\r\ndocument.getElementById('box07').style.display='none';\r\n\r\n\r\n// set the focus of cursor\r\ndocument.getElementById(\"fname\").focus();\r\n\r\n// get the math box to enter the equaison\r\nvar fieldNameElement = document.getElementById(\"math\"); \r\n\r\nif (math_problem_number < 38){\r\n  fieldNameElement.textContent = math_problems[math_problem_number];\r\n}else{\r\n  fieldNameElement.textContent = math_problems[math_problem_number];\r\n  math_problem_number = 0\r\n}\r\n\r\n// increment the problem number\r\nmath_problem_number++\r\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "this.data.question = math_problems[math_problem_number-1]\r\nthis.data.answer = document.getElementById(\"fname\").value; \r\n\r\nwindow.free_index = 1000\r\nwindow.stringy = \"\""
+            }
+          ]
+        ]
+      },
+      "title": "math_task",
+      "_tab": "Content"
+    },
+    "72": {
+      "id": "72",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<p>Now we will test your memory for the locations.</p>\n\n<p>Try to remember in which square you saw the word before and press the corresponding key on your keyboard.</p>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Instructions Source Test 2 (remember)",
+      "_tab": "Behavior",
+      "skipCondition": "${ (window.subj_btw_cond != \"remember_all\")}"
+    },
+    "73": {
+      "id": "73",
+      "type": "lab.flow.Loop",
+      "children": [
+        "75"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "532543",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw-shuffle",
+        "n": "32"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Source test 2",
+      "_tab": "Content"
+    },
+    "74": {
+      "id": "74",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<p>This is the end of the practice list. Now, you have to solve a series of simple arithmetic problems. \nOn each slide you will see an unsolved equation like this one:</p>\n\n<p>(9 + 3) x 2 = __</p>\n\n<p>Please solve the equation as accurately as possible and type your response in the input below it. In this example, the correct answer is 24. Press the ENTER button to submit your response and continue on to the next equation.</p>\n\n<p>Press any key to continue.</p>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "continue",
+            "keypress",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Distractor instructions",
+      "_tab": "Content"
+    },
+    "75": {
+      "id": "75",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "79",
+        "80",
+        "5",
+        "82"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Trial"
+    },
+    "76": {
+      "id": "76",
+      "type": "lab.flow.Loop",
+      "children": [
+        "77"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "1",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw-shuffle",
+        "n": "500"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "before:prepare",
+              "code": "window.math_problems = this.random.shuffle(window.math_problems);\r\n\r\nwindow.math_problem_number = 0"
+            }
+          ]
+        ]
+      },
+      "title": "Distractor list 2",
+      "_tab": "Behavior",
+      "timeout": "60000",
+      "tardy": true
+    },
+    "77": {
+      "id": "77",
+      "type": "lab.html.Form",
+      "content": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    .wrapper{\n      display: grid;\n      grid-template-rows: 33% 33% 33%;\n      background-color: white;\n      text-align: center;\n      align-items: center;\n      padding: 10px 0;\n      font-size: 30px;\n    }\n\n    .my_header{\n      display: grid;\n      grid-template-columns: 70% 30%;\n      grid-auto-rows: 130px;\n      background-color: white;\n      font-size: 26px;\n    }\n\n    .q_mark{\n      background-color: white;\n      align-items: center;\n    }\n\n    .boxes{\n      display: grid;\n      grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;\n      background-color: white;\n      text-align: center;\n\n    }\n\n    .inputs{\n      display:grid;\n      grid-template-columns: 50% 50%;\n      text-align: center;\n    }\n    \n    input{\n      padding: 1px; \n      margin: 0px 0;\n      box-sizing: border-box;\n      font-size : 16pt  \n    }\n\n    .box{\n      display: grid;\n      background-color: white;\n      border: 5px solid black;\n      width:180px;\n      height:80px;\n      line-height: 80px;\n      padding: 5px;\n      margin: 10px 0;\n      font-size : 20pt \n  \n    }\n\n    .my_footer{\n      position:absolute;\n      bottom:0;\n      width:100%;\n      height:60px; \n      background:white;\n      font-size : 20pt\n      text-align: center;\n    }\n\n    </style>\n</head>\n\n<body>\n  <div class = \"my_header content-horizontal-left\">\n    <div> \n      <p style=\"line-height: 120%\">Please solve the arithmetic problems below. </p>\n    </div>\n\n    <div class = \"q_mark content-horizontal-center\">\n\n    </div>\n  </div>\n  \n  <div class = \"wrapper\">\n\n    <div class = \"boxes\" id=\"i3\">\n      <div class = \"box\" id=\"box01\">\n      </div>\n      <div class = \"box\" id=\"box02\">\n      </div>\n      <div class = \"box\" id=\"box03\">\n      </div>\n      <div class = \"box\" id=\"box04\">\n      </div>\n      <div class = \"box\" id=\"box05\">\n      </div>\n      <div class = \"box\" id=\"box06\">\n      </div>\n      <div class = \"box\" id=\"box07\">\n      </div>\n    </div>\n\n    <div>\n      <br>\n      <br>\n      <br>\n      <label id = \"math\" for=\"fname\"></label>\n      <input type=\"text\" id=\"fname\" name=\"fname\" font-size: 30px;>\n    </div>\n\n    <div class=\"boxes\">\n    </div>\n  </div>\n\n  <div class = \"my_footer content-horizontal-center\">\n    <p>Type the number and press <kbd>Enter</kbd></p>\n  </div>\n  </body>\n</html>",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "keydown",
+            "",
+            "Enter"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "\r\n// hide the boxes\r\ndocument.getElementById('box01').style.display='none';\r\ndocument.getElementById('box02').style.display='none';\r\ndocument.getElementById('box03').style.display='none';\r\ndocument.getElementById('box04').style.display='none';\r\ndocument.getElementById('box05').style.display='none';\r\ndocument.getElementById('box06').style.display='none';\r\ndocument.getElementById('box07').style.display='none';\r\n\r\n\r\n// set the focus of cursor\r\ndocument.getElementById(\"fname\").focus();\r\n\r\n// get the math box to enter the equaison\r\nvar fieldNameElement = document.getElementById(\"math\"); \r\n\r\nif (math_problem_number < 38){\r\n  fieldNameElement.textContent = math_problems[math_problem_number];\r\n}else{\r\n  fieldNameElement.textContent = math_problems[math_problem_number];\r\n  math_problem_number = 0\r\n}\r\n\r\n// increment the problem number\r\nmath_problem_number++\r\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "this.data.question = math_problems[math_problem_number-1]\r\nthis.data.answer = document.getElementById(\"fname\").value; \r\n\r\nwindow.free_index = 1000\r\nwindow.stringy = \"\""
+            }
+          ]
+        ]
+      },
+      "title": "math_task",
+      "_tab": "Scripts"
+    },
+    "78": {
+      "id": "78",
+      "type": "lab.flow.Loop",
+      "children": [
+        "71"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "1",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "sequential",
+        "n": "500"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "after:end",
+              "code": "math_problem_number = 0"
+            }
+          ]
+        ]
+      },
+      "title": "Distractor list 1",
+      "_tab": "Behavior",
+      "timeout": "60000",
+      "tardy": true
+    },
+    "79": {
+      "id": "79",
+      "type": "lab.canvas.Screen",
+      "content": [],
+      "viewport": [
+        800,
+        600
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Blank",
+      "_tab": "Scripts",
+      "timeout": "1000"
+    },
+    "80": {
+      "id": "80",
+      "type": "lab.canvas.Screen",
+      "content": [
+        {
+          "type": "rect",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": -75,
+          "top": -14,
+          "width": 150,
+          "height": 100,
+          "fill": "#ffffff",
+          "stroke": "#aaaaaa",
+          "strokeWidth": 5,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "rx": 0,
+          "ry": 0,
+          "id": "447"
+        },
+        {
+          "type": "rect",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 75,
+          "top": -14,
+          "width": 150,
+          "height": 100,
+          "fill": "#ffffff",
+          "stroke": "#aaaaaa",
+          "strokeWidth": 5,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "rx": 0,
+          "ry": 0,
+          "id": "448"
+        },
+        {
+          "type": "rect",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": -75,
+          "top": 86,
+          "width": 150,
+          "height": 100,
+          "fill": "#ffffff",
+          "stroke": "#aaaaaa",
+          "strokeWidth": 5,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "rx": 0,
+          "ry": 0,
+          "id": "449"
+        },
+        {
+          "type": "rect",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 75,
+          "top": 86,
+          "width": 150,
+          "height": 100,
+          "fill": "#ffffff",
+          "stroke": "#aaaaaa",
+          "strokeWidth": 5,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "rx": 0,
+          "ry": 0,
+          "id": "450"
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": -75,
+          "top": -11,
+          "width": 17.8,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "1",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "451",
+          "styles": {}
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 75,
+          "top": -12,
+          "width": 17.8,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "2",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "452",
+          "styles": {}
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": -75,
+          "top": 85,
+          "width": 17.8,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "3",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "453",
+          "styles": {}
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 75,
+          "top": 88,
+          "width": 17.8,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "4",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "454",
+          "styles": {}
+        },
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 0,
+          "top": -111,
+          "width": 291.75,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "${window.test_word}",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "537",
+          "styles": {}
+        }
+      ],
+      "viewport": [
+        800,
+        600
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "1",
+            "keydown",
+            "",
+            "1"
+          ],
+          [
+            "2",
+            "keydown",
+            "",
+            "2"
+          ],
+          [
+            "3",
+            "keydown",
+            "",
+            "3"
+          ],
+          [
+            "4",
+            "keydown",
+            "",
+            "4"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "before:prepare",
+              "code": "window.test_word = window.word1_test2[CounterTest2]\r\nthis.data.test_word = window.test_word"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "window.fast = this.data.duration"
+            }
+          ]
+        ]
+      },
+      "title": "Screen",
+      "_tab": "Scripts",
+      "tardy": true
+    },
+    "82": {
+      "id": "82",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "CounterTest2++"
+            }
+          ]
+        ]
+      },
+      "title": "LastStepLoop",
+      "_tab": "Scripts",
+      "timeout": "1"
+    },
+    "85": {
+      "id": "85",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "Thank you!",
+              "content": "Thank you for participating in the experiment. Please answer these final questions truthfully - your responses will not affect your compensation."
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "radio",
+              "options": [
+                {
+                  "label": "Yes, I used external aid",
+                  "coding": "Yes"
+                },
+                {
+                  "label": "No, I did not use external aid",
+                  "coding": "No"
+                }
+              ],
+              "label": "Did you use any aid to remember the words (e.g., by writing them down on a piece of paper or in a computer file)?",
+              "name": "use_help"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "textarea",
+              "label": "Please describe with a few sentences what strategy you used to remember the words. Be as detailed as you can."
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Click here to confirm your participation to Prolific",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Thanks (rem)",
+      "_tab": "Behavior",
+      "skipCondition": "${(window.subj_btw_cond != \"remember_all\")}"
+    },
+    "root": {
+      "id": "root",
+      "title": "root",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "1",
+        "16",
+        "6",
+        "10",
+        "37",
+        "39",
+        "40",
+        "13",
+        "74",
+        "78",
+        "19",
+        "20",
+        "35",
+        "46",
+        "63",
+        "11",
+        "47",
+        "48",
+        "64",
+        "76",
+        "12",
+        "26",
+        "72",
+        "15",
+        "73",
+        "85",
+        "25"
+      ],
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "plugins": [
+        {
+          "type": "lab.plugins.Metadata"
+        }
+      ],
+      "metadata": {
+        "title": "int_inc_mem12",
+        "description": "Experiment for testing whether a deep semantic processing of stimuli prevents an intention vs incidental memory effect with an item-based paradigm in episodic memory",
+        "repository": "",
+        "contributors": ""
+      }
+    }
+  },
+  "version": [
+    20,
+    1,
+    1
+  ],
+  "files": {
+    "files": {
+      "index.html": {
+        "content": "data:text/html,%3C!doctype%20html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%20%20%3Cmeta%20charset%3D%22utf-8%22%3E%0A%20%20%3Ctitle%3EExperiment%3C%2Ftitle%3E%0A%20%20%3C!--%20viewport%20setup%20--%3E%0A%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1%22%3E%0A%20%20%3C!--%20lab.js%20library%20and%20experiment%20code%20--%3E%0A%20%20%24%7B%20header%20%7D%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3C!--%20If%20you'd%20rather%20have%20a%20container%20with%20a%20fixed%20width%0A%20%20%20%20%20%20%20and%20variable%20height%2C%20try%20removing%20the%20fullscreen%20class%20below%20--%3E%0A%20%20%3Cdiv%20class%3D%22container%20fullscreen%22%20data-labjs-section%3D%22main%22%3E%0A%20%20%20%20%3Cmain%20class%3D%22content-vertical-center%20content-horizontal-center%22%3E%0A%20%20%20%20%20%20%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%3Ch2%3ELoading%20Experiment%3C%2Fh2%3E%0A%20%20%20%20%20%20%20%20%3Cp%3EThe%20experiment%20is%20loading%20and%20should%20start%20in%20a%20few%20seconds%3C%2Fp%3E%0A%20%20%20%20%20%20%3C%2Fdiv%3E%0A%20%20%20%20%3C%2Fmain%3E%0A%20%20%3C%2Fdiv%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E%0A",
+        "source": "library"
+      },
+      "style.css": {
+        "content": "data:text/css,%2F*%20Please%20define%20your%20custom%20styles%20here%20*%2F",
+        "source": "library"
+      }
+    },
+    "bundledFiles": {
+      "lib/lab.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.fallback.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.css": {
+        "type": "text/css"
+      },
+      "lib/loading.svg": {
+        "type": "image/svg+xml"
+      }
+    }
+  }
+}

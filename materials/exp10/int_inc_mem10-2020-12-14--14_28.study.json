@@ -1,0 +1,3659 @@
+{
+  "components": {
+    "1": {
+      "id": "1",
+      "type": "lab.html.Form",
+      "content": "<header>\n  <h1> Welcome to the study!</h1>\n</header>\n\n<style>\n  #div1{width: 600px;text-align: center;}\n</style>\n\n<main class=\"content-horizontal-center\">\n  <div id=\"div1\">\n    <p> Hello and welcome to our experiment.</p>\n    <p>Make sure you can work for 20 minutes without any interruption. Please avoid any distractions (i.e., TV, music, smartphones, kids, cats). <b>Please don't leave the study tab or switch windows on your computer while the experiment is ongoing. Doing so will disqualify you from continuing the experiment and you will not receive compensation on Prolific.</b> Your cooperation will make sure we have high quality data for scientific inferences.</p>\n <!--  <p> Please enter your personal subject number in the field. If you do not remember the number, restart the experiment. </p>\n    <form>\n      <input name=\"subj\" id=\"subj\" required>\n      <button for=\"subj\" type=\"submit\">Continue</button>\n    </form> --> \n  </div>\n</main>\n\n<footer>\n  <button id =\"b\">Continue</button>\n</footer>\n\n\n\n\n",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "click",
+            "button#b",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "get subject id",
+              "message": "commit",
+              "code": "/* General structure of the experiment can be found\nin the scripts under Intro Screen!\n*/\n\nwindow.id = this.random.uuid4() \nhttps://labjs.readthedocs.io/en/latest/reference/random.html\n\n\n//window.subj = document.getElementById(\"subj\").value\n\n//upload wordlist\n\nwindow.uploadWords = [ \"airplane\",\n\"apple\",\n\"bacon\",\n\"badge\",\n\"banana\",\n\"barn\",\n\"barrel\",\n\"basement\",\n\"basket\",\n\"beach\",\n\"bedroom\",\n\"belt\",\n\"bible\",\n\"bike\",\n\"blanket\",\n\"bone\",\n\"boot\",\n\"bowl\",\n\"brain\",\n\"branch\",\n\"bread\",\n\"brick\",\n\"bride\",\n\"bridge\",\n\"bucket\",\n\"buffalo\",\n\"burger\",\n\"bush\",\n\"butler\",\n\"cabin\",\n\"cage\",\n\"camera\",\n\"carpet\",\n\"casino\",\n\"castle\",\n\"cave\",\n\"chair\",\n\"cherry\",\n\"chicken\",\n\"child\",\n\"chin\",\n\"church\",\n\"cigar\",\n\"circus\",\n\"clinic\",\n\"cloud\",\n\"clown\",\n\"coast\",\n\"cocktail\",\n\"concert\",\n\"cookie\",\n\"corn\",\n\"costume\",\n\"couch\",\n\"crown\",\n\"curtain\",\n\"dentist\",\n\"dessert\",\n\"devil\",\n\"diamond\",\n\"dice\",\n\"doctor\",\n\"dog\",\n\"dragon\",\n\"eagle\",\n\"earth\",\n\"elephant\",\n\"elevator\",\n\"empire\",\n\"factory\",\n\"finger\",\n\"flower\",\n\"forest\",\n\"fort\",\n\"frog\",\n\"fruit\",\n\"garden\",\n\"glove\",\n\"goat\",\n\"goose\",\n\"guitar\",\n\"hammer\",\n\"harbor\",\n\"heart\",\n\"highway\",\n\"horn\",\n\"horse\",\n\"house\",\n\"island\",\n\"jeep\",\n\"jewelry\",\n\"jungle\",\n\"knee\",\n\"knife\",\n\"lamp\",\n\"lawn\",\n\"lawyer\",\n\"lemon\",\n\"library\",\n\"lion\",\n\"liver\",\n\"market\",\n\"medal\",\n\"monkey\",\n\"mouse\",\n\"nail\",\n\"nanny\",\n\"needle\",\n\"nest\",\n\"newspaper\",\n\"nurse\",\n\"ocean\",\n\"opera\",\n\"orange\",\n\"palace\",\n\"passport\",\n\"peanut\",\n\"pearl\",\n\"penny\",\n\"phone\",\n\"piano\",\n\"pill\",\n\"pillow\",\n\"pilot\",\n\"pipe\",\n\"pistol\",\n\"pizza\",\n\"planet\",\n\"pole\",\n\"potato\",\n\"priest\",\n\"pumpkin\",\n\"purse\",\n\"rabbit\",\n\"railroad\",\n\"ranch\",\n\"robin\",\n\"robot\",\n\"sandwich\",\n\"satellite\",\n\"school\",\n\"shark\",\n\"sheep\",\n\"shotgun\",\n\"sink\",\n\"skull\",\n\"soda\",\n\"soldier\",\n\"spider\",\n\"stairs\",\n\"statue\",\n\"steak\",\n\"string\",\n\"surgeon\",\n\"sweater\",\n\"table\",\n\"tank\",\n\"taxi\",\n\"tent\",\n\"tiger\",\n\"tire\",\n\"toast\",\n\"tooth\",\n\"towel\",\n\"tower\",\n\"train\",\n\"tunnel\",\n\"turtle\",\n\"underwear\",\n\"universe\",\n\"valley\",\n\"virus\",\n\"waiter\",\n\"wallet\",\n\"whale\",\n\"whistle\",\n\"window\",\n\"wolf\",\n\"worm\",\n\"wrist\",]\n\nwindow.words = this.random.shuffle(window.uploadWords)\n\n//assign words to lists\nwindow.word1_list1 = window.words.slice (0, 30);\nwindow.word2_list1 = window.words.slice (30, 60);\nwindow.word1_list2 = window.words.slice (60, 90);\nwindow.word2_list2 = window.words.slice (90, 120);\nwindow.word1_list3 = window.words.slice (120, 150);\nwindow.word2_list3 = window.words.slice (150, 180);\n\n//determine which words to use as cues in the second test\nwindow.wordcue_test2 = []\n\nfor (var i=0; i < window.word1_list2.length; i++) {\n  if (i % 2 === 1) {\n    window.wordcue_test2.push(window.word1_list2[i]);\n  }\n}\n\nwindow.wordcue_test2 = this.random.shuffle(window.wordcue_test2);\n"
+            }
+          ],
+          [
+            {
+              "title": "transpose condition",
+              "message": "before:prepare",
+              "code": "//create conditions as arrays(equivalent as vectors in R) and assign with modulo function\n\n\n\n\n//alert(subj_stim_type)\n\n//# for each list, define which trials to remember and which to process\nwindow.condition = [\"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\", \"remember\", \"process\"];\n\n// shuffle\nwindow.condition_list1 = this.random.shuffle(window.condition);\nwindow.condition_list2 = this.random.shuffle(window.condition);\nwindow.condition_list3 = this.random.shuffle(window.condition);\n\n\n\n\n //Define Counters for lists\n CounterList1 = 0\n CounterList2 = 0\n CounterList3 = 0\n CounterTest2 = 0\n\n//Define math problems\n window.math_problems = [\"(2 + 3) x 4 = ?\", \"(4 - 3) x 8 = ?\",\"(2 + 5) x 2 = ?\",\"(5 + 3) / 4 = ?\",\"(7 + 8) x 3 = ?\",\"(8 + 8) / 4 = ?\",\"(9 - 5) x 4 = ?\",\"(9 - 3) x 3 = ?\",\"(19 - 4) x 5 = ?\",\"(12 - 3) / 3 = ?\",\"(2 + 6) x 5 = ?\",\"(1 + 7) x 6 = ?\",\"(8 + 3) x 4 = ?\",\"(21 + 12) / 11 = ?\",\"(9 + 3) x 2 = ?\",\"(4 + 3) x 4 = ?\",\"(4 + 4) x 4 = ?\",\"(3 + 9) x 2 = ?\",\"(19 + 11) / 5 = ?\",\"(17 + 23) / 8 = ?\",\"(7 + 2) x 8 = ?\",\"(3 + 6) / 3 = ?\",\"(7 + 13) / 4 = ?\",\"(13 + 23) x 2 = ?\",\"(4 + 3) x 9 = ?\",\"(2 + 2) x 16 = ?\",\"(3 + 3) / 2 = ?\",\"(6 + 6) / 3 = ?\",\"(7 - 4) x 8 = ?\",\"(21 - 9) / 4 = ?\",\"(11 + 23) x 3 = ?\",\"(45 - 23) / 11 = ?\",\"(6 + 6) x 6 = ?\",\"(2 + 2) / 2 = ?\",\"(2 + 2) x 2 = ?\",\"(3 + 3) x 8 = ?\",\"(3 + 3) x 3 = ?\",\"(4 + 2) x 9 = ?\",\"(23 - 17) / 6 = ?\",\"(50 - 23) / 9 = ?\"];\n\nwindow.math_problems = this.random.shuffle(window.math_problems);\n\nwindow.math_problem_number = 0\n\n\n// Kick out participants if they leave the experimental window twice\nwindow.leave_counter = 0;\nwindow.n_leaves = 2;\nwindow.pause = true;\nstudy.options.parameters.validity_check = true;\nwindow.addEventListener(\"visibilitychange\", function() {\n    console.log( document.visibilityState );\n    console.log(pause);\n    if(document.visibilityState === 'hidden' && !pause){\n        leave_counter++\n    }\n    if(leave_counter >= n_leaves){\n        leave_counter = -100;\n        console.log('ending experiment');\n        study.options.parameters.validity_check = false;\n        study.end();\n        alert(\n            'Unfortunately, you have left the tab/ browser windows more than two times. ' +\n            'As instructed in the beginning of the experiment, we therefore have to end this experiment ' +\n            'prematurely and we cannot grant you any credit. ' + \n            'If this was a mistake, please contact us via Prolific.')\n    }\n});\n"
+            }
+          ],
+          [
+            {
+              "title": "Collect Prolific ID",
+              "message": "run",
+              "code": "if (typeof jatos !== \"undefined\") {\r\n   this.data.prolific_pid = jatos.urlQueryParameters.PROLIFIC_PID;\r\n   this.data.pstudy_id = jatos.urlQueryParameters.STUDY_ID;\r\n   this.data.psession_id = jatos.urlQueryParameters.SESSION_ID;\r\n}\r\n"
+            }
+          ]
+        ]
+      },
+      "title": "Collect ID",
+      "_tab": "Scripts"
+    },
+    "2": {
+      "id": "2",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n"
+            }
+          ],
+          [
+            {
+              "type": "text",
+              "title": "General instructions",
+              "content": "<p>You will see 30 words in each list. Please continue judging the size of each word relative to the one before it until all words have been presented.</p>\n\n<p>You will see 3 such lists, and after each list you will have to write all the words that you can remember from the list.</p>\n\n<p>After you respond to a word, the black border around the word will become either BLUE or RED. <b>You only have to remember the words followed by a BLUE color for the later test!</b> </p>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "continue",
+            "keypress",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "saving color condition",
+              "message": "end",
+              "code": "\n\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "General instructions (blue)",
+      "_tab": "Content",
+      "tardy": false,
+      "skipCondition": ""
+    },
+    "3": {
+      "id": "3",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "Instructions",
+              "content": "<p>The test for this list has changed!</p>\n\n<p>On each screen you will see one of the words you studied in the last list. Your task is to remember the two words to which you compared its size (the word that came before and after the shown word).</p>\n\n<p>For example, if you see the word CUP, and during study you responded that it's larger than a PEN, and then you responded than a RING is larger than a cup, you have to type the words PEN and RING.</p>\n\n<p>Try to recall all words, regardless of whether you were told to remember them. If you are not sure, write down your best guess for the two words.</p>\n\n<p>You have 10 seconds to type the two words in response to the word you see on the screen. Afterwards, a new word will appear and you have to do the same.</p>\n\n"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "before:prepare",
+              "code": "window.free_index = 1000\r\nwindow.stringy = \"\""
+            }
+          ]
+        ]
+      },
+      "title": "Test 2 instructions",
+      "_tab": "Scripts"
+    },
+    "4": {
+      "id": "4",
+      "type": "lab.flow.Loop",
+      "children": [
+        "7"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "1564",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw-shuffle",
+        "n": "15"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Cue test 2",
+      "_tab": "Content",
+      "timeout": ""
+    },
+    "7": {
+      "id": "7",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "26",
+        "11"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Sequence"
+    },
+    "8": {
+      "id": "8",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\r\n#div1{width: 800px;text-align: left;}\r\n#blank{color: white;}\r\nheader{  padding: 5px;  height: 120px;}\r\nfooter{  padding: 5px;  height: 100px;}\r\ndt{line-height: 2;font-weight: bold;}\r\ntable, th, td {  border: 1px solid black;\r\n  border-collapse: collapse;  background-color: #ecf2f9;}\r\nth, td {  padding: 1px;}\r\n</style>\r\n"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "text",
+              "title": "Instructions",
+              "content": "<p>Your task is to judge the size of different objects relative to each other. In addition, you have to remember some of them for a later memory test.</p>\n\n<p>You will see a list of words, presented one by one on the screen. For each word, you have to judge whether the object it refers to is larger or smaller than the object presented immediately before it. The word will remain on the screen until you respond.</p>\n\n<div id=\"blank\">\n<p>For example, you might see the following three words in a row:</p>\n\n<p>1) PEN</p>\n<p>2) CUP</p>\n<p>3) RING</p>\n\n<p>The first word is not preceded by any others, so you can press either the UP or the DOWN arrow key. </p>\n\n<p>For the second word (CUP), you have to decide whether the object is larger than the one before it (PEN). Since a CUP is generally larger than a PEN, you have to respond \"LARGER\" by pressing the UP arrow key.</p>\n\n<p>For the third word (RING), you again have to decide whether the object is larger than the one before it (CUP). Since a RING is generally smaller than a CUP, you have to respond \"SMALLER\" by pressing the DOWN arrow key.</p>\n</div>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Instructions"
+    },
+    "9": {
+      "id": "9",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\r\n#div1{width: 800px;text-align: left;}\r\nheader{  padding: 5px;  height: 120px;}\r\nfooter{  padding: 5px;  height: 100px;}\r\ndt{line-height: 2;font-weight: bold;}\r\ntable, th, td {  border: 1px solid black;\r\n  border-collapse: collapse;  background-color: #ecf2f9;}\r\nth, td {  padding: 1px;}\r\n</style>\r\n"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "text",
+              "title": "Instructions",
+              "content": "<p>Your task is to judge the size of different objects relative to each other. In addition, you have to remember some of them for a later memory test.</p>\n\n<p>You will see a list of words, presented one by one on the screen. For each word, you have to judge whether the object it refers to is larger or smaller than the object presented immediately before it. The word will remain on the screen until you respond.</p>\n\n<p>For example, you might see the following three words in a row:</p>\n\n<p>1) PEN</p>\n<p>2) CUP</p>\n<p>3) RING</p>\n\n<p>The first word is not preceded by any others, so you can press either the UP or the DOWN arrow key. </p>\n\n<p>For the second word (CUP), you have to decide whether the object is larger than the one before it (PEN). Since a CUP is generally larger than a PEN, you have to respond \"LARGER\" by pressing the UP arrow key.</p>\n\n<p>For the third word (RING), you again have to decide whether the object is larger than the one before it (CUP). Since a RING is generally smaller than a CUP, you have to respond \"SMALLER\" by pressing the DOWN arrow key.</p>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Instructions"
+    },
+    "11": {
+      "id": "11",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: center;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n<header>\n<p>\nPress <kbd> space </kbd> to see the next word.\n</p>\n</header>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "start",
+            "keypress",
+            "",
+            "Space"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "window.free_index = 1000\r\nwindow.stringy = \"\"\r\nwindow.cue_word = window.wordcue_test2[CounterTest2];\r\nCounterTest2++;"
+            }
+          ]
+        ]
+      },
+      "title": "Ready",
+      "_tab": "Scripts"
+    },
+    "12": {
+      "id": "12",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n\t/* designed in https://divtable.com/table-styler/ */\n\ndiv.myStyle {\n  font-family: \"Arial Black\", Gadget, sans-serif;\n  width: 100%;\n  text-align: center;\n  border-collapse: collapse;\n}\n.divTable.myStyle .divTableCell, .divTable.myStyle .divTableHead {\n  border: 12px solid #000000;\n  padding: 5px 10px;\n}\n.divTable.myStyle .divTableBody .divTableCell {\n  font-size: 25px;\n  font-weight: bold;\n  color: #000000;\n}\n.myStyle .tableFootStyle {\n  font-size: 13px;\n}\n.myStyle .tableFootStyle .links {\n\t text-align: right;\n}\n.myStyle .tableFootStyle .links a{\n  display: inline-block;\n  background: #FFFFFF;\n  color: #398AA4;\n  padding: 2px 8px;\n  border-radius: 5px;\n}\n.myStyle.outerTableFooter {\n  border-top: none;\n}\n.myStyle.outerTableFooter .tableFootStyle {\n  padding: 3px 5px; \n}\n</style>\n<header> <div id = \"rem\"> \n  <p> &nbsp;\n  </p>\n</div>\n</header>\n<main>\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word1\"></div>\n</div>\n</div>\n</div>\n\n<div>\n<p> Is this object larger than the previous one? </p>\n<p>For <strong>yes</strong> please press <kbd>↑</kbd> and for</p>\n<p><strong>no</strong> please press <kbd>↓</kbd>. </p>\n</div>\n\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "yes",
+            "keyup",
+            "",
+            "ArrowUp"
+          ],
+          [
+            "no",
+            "keydown",
+            "",
+            "ArrowDown"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word1\nvar myWord11 = window.word1_list1[CounterList1]\n\n// get element to display word\nvar word1_L1 = document.getElementById(\"word1\"); \nword1_L1.textContent = myWord11\n\n// style how to display\nif (trial_condition == \"remember\") {\n  document.getElementById(\"rem\").style.display = \"block\"\n} else {\n  document.getElementById(\"rem\").style.display = \"none\"\n}\n\n// save data\nthis.data.trial_condition = condition_list1[CounterList1]\nthis.data.presented_word1 = myWord11\nthis.data.presented_color = trial_color\n"
+            }
+          ],
+          [
+            {
+              "title": "saving data",
+              "message": "end",
+              "code": "\nwindow.fast = this.data.duration\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "words",
+      "_tab": "Content",
+      "timeout": "",
+      "skipCondition": "${subj_stim_type == \"pairs\"}",
+      "tardy": true,
+      "correctResponse": ""
+    },
+    "13": {
+      "id": "13",
+      "type": "lab.flow.Loop",
+      "children": [
+        "17"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "1726427634",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "30"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "List1",
+      "_tab": "Content",
+      "timeout": "",
+      "_collapsed": false
+    },
+    "14": {
+      "id": "14",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "General instructions",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n<p>You will see 30 words in each list. Please continue judging the size of each word relative to the one before it until all words have been presented.</p>\n\n<p>You will see 3 such lists, and after each list you will have to write all the words that you can remember from the list.</p>\n\n<p>After you respond to a word, the black border around the word will become either BLUE or RED. <b>You only have to remember the words followed by a RED color for the later test!</b> </p>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "continue",
+            "keypress",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "saving color condition",
+              "message": "end",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "General instructions (red)",
+      "_tab": "Content",
+      "tardy": false,
+      "skipCondition": ""
+    },
+    "15": {
+      "id": "15",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n\t/* designed in https://divtable.com/table-styler/ */\n\ndiv.myStyle {\n  font-family: \"Arial Black\", Gadget, sans-serif;\n  width: 100%;\n  text-align: center;\n  border-collapse: collapse;\n}\n.divTable.myStyle .divTableCell, .divTable.myStyle .divTableHead {\n  border: 12px solid #000000;\n  padding: 5px 10px;\n}\n.divTable.myStyle .divTableBody .divTableCell {\n  font-size: 25px;\n  font-weight: bold;\n  color: #000000;\n}\n.myStyle .tableFootStyle {\n  font-size: 13px;\n}\n.myStyle .tableFootStyle .links {\n\t text-align: right;\n}\n.myStyle .tableFootStyle .links a{\n  display: inline-block;\n  background: #FFFFFF;\n  color: #398AA4;\n  padding: 2px 8px;\n  border-radius: 5px;\n}\n.myStyle.outerTableFooter {\n  border-top: none;\n}\n.myStyle.outerTableFooter .tableFootStyle {\n  padding: 3px 5px; \n}\n</style>\n<header>\n  <div id = \"rem\"> \n  <p> &nbsp;\n  </p>\n</div>\n</header>\n\n<main>\n\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word1\">&nbsp;</div>\n</div>\n</div>\n</div>\n<br/>\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word2\">&nbsp;</div>\n</div>\n</div>\n</div>\n\n<div>\n<p>Which of the two objects is larger?</p>\n<p>Press <strong>up</strong> for top object<kbd>↑</kbd> and </p>\n<p><strong>down</strong> for bottom object <kbd>↓</kbd>.</p>\n</div>\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "up",
+            "keyup",
+            "",
+            "ArrowUp"
+          ],
+          [
+            "down",
+            "keydown",
+            "",
+            "ArrowDown"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word1\nvar myWord11 = window.word1_list1[CounterList1]\n\n// get element to display word1\nvar word1_L1 = document.getElementById(\"word1\"); \nword1_L1.textContent = myWord11\n\n// get word2\nvar myWord21 = window.word2_list1[CounterList1]\n\n// get element to display word2\nvar word2_L1 = document.getElementById(\"word2\"); \nword2_L1.textContent = myWord21\n\n\n//show remember for condition color\nif (trial_condition == \"remember\") {\n  document.getElementById(\"rem\").style.display = \"block\"\n} else {\n  document.getElementById(\"rem\").style.display = \"none\"\n}\n\n//save data\nthis.data.trial_condition = condition_list1[CounterList1]\nthis.data.presented_word1 = myWord11\nthis.data.presented_word2 = myWord21\nthis.data.presented_color = trial_color"
+            }
+          ],
+          [
+            {
+              "title": "saving data",
+              "message": "end",
+              "code": "window.fast = this.data.duration\n\n\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "pairs",
+      "_tab": "Content",
+      "timeout": "",
+      "skip": false,
+      "skipCondition": "${subj_stim_type == \"words\"}",
+      "tardy": true
+    },
+    "16": {
+      "id": "16",
+      "type": "lab.html.Form",
+      "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n<header>\n<h2> Information on the study and consent form </h2></header>\n\n<main class=\"content-horizontal-center\">\n<form id = \"consent\">\n<div id = \"div1\">\n <span> <b>Please read the information carefully.</b></span>\n<p>\n <dl><dt>Aim of the study</dt>\n <dd>In this study we investigate the ability to process and remember verbal information. You will be presented with three lists of 30 words each. In each list, you will have to rate the size of each word. Additionally, you will have to remember only some of the words presented in the list. After each list, you will have to type the words you remember from the previous list.</dd> \n </p> \n <p>\n <dt>Requirements</dt>\n <dd>To participate in this study, you must be between 18-35 years old and you must be a native English speaker.</dd>\n </p>\n<p>\n <dt>Possible advantages and benefits of participating in the study</dt>\n <dd> Participating in the present experiment will provide an important contribution to current memory research and it offers an interesting insight into how cognition research is conducted.</dd>\n</p>\n<p>\n <dt>Voluntary participation</dt>\n <dd>Your participation in this study is voluntary. You have the right to waive your participation and you have the possibility to revoke your consent at any time and thus to terminate the study prematurely. The withdrawal from the study does not need to be justified.</dd>\n</p>\n<p>\n <dt>Possible disadvantages</dt>\n <dd>There are none known.</dd>\n</p>\n<p>\n <dt>Confidentiality of data</dt>\n <dd>The personal data collected in this study will be made anonymous by means of coding and will only be accessible to experts for scientific evaluation or members of the Ethics Committee of the Faculty of Philosophy of the University of Zurich for testing and control purposes in strict compliance with confidentiality. Subsequent publications of the data are based on mean values of the study results, making it impossible to draw conclusions about individuals.</dd>\n</p>\n\n<p>\n<dt> Duration of the study </dt>\n <dd>The study takes 20 minutes in total.</dd>\n</p>\n\n  <p> <b>If you agree with all the points listed, please check all the following boxes:</b><br> </p>\n   <input type=\"checkbox\" name=\"consent1\" id=\"consent1\" required>\n    <label for=\"consent1\">I confirm that I have read and understood all information on the study.</label><br> \n    <input type=\"checkbox\" name=\"consent2\" id=\"consent2\" required>\n    <label for=\"consent2\">I have taken note that participation in this experiment is voluntary and that I can cancel it at any time and without consequences.</label><br> \n   <input type=\"checkbox\" name=\"consent3\" id=\"consent3\" required>\n    <label for=\"consent3\">I confirm that I am at least 18 years old and want to participate in this study.</label><br> \n   \n</div>\n</form>\n</main>\n\n<footer>\n  <button type=\"submit\" form = \"consent\" > Continue</button>\n</footer>\n",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "function getRandomInt(max) {\n  return Math.floor(Math.random() * Math.floor(max));\n}\n\n\n//group_id = window.subj % 4\ngroup_id = getRandomInt(2)\n\n\nwindow.stim_type = [\"words\", \"words\"];\nwindow.rem_color = [\"red\", \"blue\"];\nwindow.proc_color = [\"blue\", \"red\"];\n\nwindow.subj_stim_type = window.stim_type[group_id];\nwindow.subj_rem_color = window.rem_color[group_id];\nwindow.subj_proc_color = window.proc_color[group_id];\n\n\n//determine color for each word\nif(window.condition_list1 == \"remember\") {\n  window.color_list1 = window.subj_rem_color;\n } else {\n  window.color_list1 = window.subj_proc_color;\n }\n\nif(window.condition_list2 == \"remember\") {\n  window.color_list2 = window.subj_rem_color;\n } else {\n  window.color_list2 = window.subj_proc_color;\n }\n\nif(window.condition_list3 == \"remember\") {\n  window.color_list3 = window.subj_rem_color;\n } else {\n  window.color_list3 = window.subj_proc_color;\n }\n \n//alert(window.rem_color[group_id])"
+            }
+          ]
+        ]
+      },
+      "title": "Informed Consent",
+      "_tab": "Scripts",
+      "timeout": ""
+    },
+    "17": {
+      "id": "17",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "29",
+        "12",
+        "21",
+        "59",
+        "15",
+        "32",
+        "60",
+        "18"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Trial",
+      "_tab": "Content"
+    },
+    "18": {
+      "id": "18",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "var showMyCounter = CounterList1;\nCounterList1++\n"
+            }
+          ]
+        ]
+      },
+      "title": "LAstStepLoop",
+      "_tab": "Content",
+      "timeout": "1"
+    },
+    "19": {
+      "id": "19",
+      "type": "lab.html.Screen",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "click",
+            "button#b5",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "index",
+              "message": "run",
+              "code": "window.free_index = 1000\nwindow.stringy = \"\""
+            }
+          ]
+        ]
+      },
+      "title": "Instruction Recall Test1 ",
+      "_tab": "Scripts",
+      "content": "<style>\n#div1{\nwidth: 900px;\ntext-align:  content-horizontal-center;\n}\n</style>\n\n\n<main class=\"content-horizontal-center\">\n  <div id=\"div1\">\n    <p> Next comes the memory test. You have to recall as many of the words you were told to remember as possible. </p>\n    <p> An <strong> input field</strong> will appear on the next screen. Please type in only the words you were asked to remember from the previous list. After typing each word, press the <kbd>Enter</kbd> button and the word you typed will appear below the input field. This gives you an overview of which words you have already remembered.</p>\n    <p> You have 30 seconds time. Please use this time to remember as many of the words as possible. After the 30 seconds expire you will automatically continue to the next list.</p>\n    \n  </div>\n</main>\n\n\n<footer> \n  <p>When you have read the instructions and are ready, press <button type=\"submit\" id = \"b5\" form = \"free_recall\" > continue </button>to start the recall test.\n  </p>\n</footer>"
+    },
+    "20": {
+      "id": "20",
+      "type": "lab.flow.Loop",
+      "children": [
+        "22"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "98769423",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "80"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": []
+      },
+      "title": "Recall Test1",
+      "_tab": "Behavior",
+      "_collapsed": false,
+      "timeout": "30000"
+    },
+    "21": {
+      "id": "21",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<main>\nTOO FAST! Please respond carefully\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "too fast",
+      "_tab": "Content",
+      "timeout": "4000",
+      "skipCondition": "${ (subj_stim_type == \"pairs\") || (window.fast > '400')} ",
+      "tardy": true
+    },
+    "22": {
+      "id": "22",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "23"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": []
+      },
+      "title": "Enter Words",
+      "_tab": "Behavior"
+    },
+    "23": {
+      "id": "23",
+      "type": "lab.html.Form",
+      "content": "<style>\n#div1{width: 900px;text-align:  center;}\n#div2{width: 900px; text-align: left;}\nheader{ padding: 5px; height: 100px;}\nfooter{ padding: 5px; height: 120px;}\nlabel {\n  width:200px;\n  display: inline-block;\n}\n</style>\n\n<script>\n  $(document).keydown(function (e) {\n    var keycode1 = (e.keyCode ? e.keyCode : e.which);\n    if (keycode1 == 0 || keycode1 == 9) {\n        e.preventDefault();\n        e.stopPropagation();\n    }\n});\n</script>\n\n<header>\n  <h2> Try to recall as many words as possible from those which you were supposed to remember: </h2>\n</header>\n\n\n<main class=\"content-horizontal-center\">\n  <form>\n    <div id = \"div1\">\n      <input type = \"text\" name=\"recall\" id= \"recall\" required\n       onload=\"this.select();\" placeholder=\"Type in word\">\n    </div>\n    <div id = \"div2\">\n      <p> \n        ${window.stringy}\n      </p>\n    </div>\n\n    \n  </form>\n</main>\n\n<footer>\n  <p> After 30 seconds it will continue automatically.</p>\n\n</footer>",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "enter",
+            "keypress",
+            "#recall",
+            "Enter"
+          ],
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "add strings",
+              "message": "end",
+              "code": "window.word = document.getElementById(\"recall\").value\n\nwindow.stringy = stringy + word + ', '\n\nthis.data.typed_word = word\nthis.data.trial = free_index\n\nif (this.data.response == \"submit\") {\n  this.parent.end()\n  this.parent.parent.end()\n}\n\n++window.free_index"
+            }
+          ],
+          [
+            {
+              "title": "set cursor into the input field",
+              "message": "run",
+              "code": "// Credits: http://blog.vishalon.net/index.php/javascript-getting-and-setting-caret-position-in-textarea/\nfunction setCaretPosition(ctrl, pos) {\n  // Modern browsers\n  if (ctrl.setSelectionRange) {\n    ctrl.focus();\n    ctrl.setSelectionRange(pos, pos);\n  \n  // IE8 and below\n  } else if (ctrl.createTextRange) {\n    var range = ctrl.createTextRange();\n    range.collapse(true);\n    range.moveEnd('character', pos);\n    range.moveStart('character', pos);\n    range.select();\n  }\n}\n\n// Set the cursor position of the \"#test-input\" element to the end when the page loads\nvar input = document.getElementById('recall');\nsetCaretPosition(input, input.value.length);"
+            }
+          ]
+        ]
+      },
+      "title": "Typing",
+      "_tab": "Scripts",
+      "tardy": true
+    },
+    "24": {
+      "id": "24",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "var showMyCounter = CounterList2;\nCounterList2++\n"
+            }
+          ]
+        ]
+      },
+      "title": "LAstStepLoop",
+      "_tab": "Scripts",
+      "timeout": "1"
+    },
+    "26": {
+      "id": "26",
+      "type": "lab.flow.Loop",
+      "children": [
+        "27"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "98769423",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "80"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Recall Test2",
+      "_tab": "Behavior",
+      "_collapsed": false,
+      "timeout": "12000"
+    },
+    "27": {
+      "id": "27",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "28"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": []
+      },
+      "title": "Enter Words",
+      "_tab": "Behavior"
+    },
+    "28": {
+      "id": "28",
+      "type": "lab.html.Form",
+      "content": "<style>\n#div1{width: 900px;text-align:  center;}\n#div2{width: 900px; text-align: left;}\nheader{ padding: 5px; height: 100px;}\nfooter{ padding: 5px; height: 120px;}\nlabel {\n  width:200px;\n  display: inline-block;\n}\n</style>\n\n<script>\n  $(document).keydown(function (e) {\n    var keycode1 = (e.keyCode ? e.keyCode : e.which);\n    if (keycode1 == 0 || keycode1 == 9) {\n        e.preventDefault();\n        e.stopPropagation();\n    }\n});\n</script>\n\n<header>\n  <p> Which two words did you compare the size of this word to:</p>\n  <h2> <strong>${window.wordcue}</strong></h2>\n</header>\n\n\n<main class=\"content-horizontal-center\">\n  <form>\n    <div id = \"div1\">\n      <input type = \"text\" name=\"recall\" id= \"recall\" required\n       onload=\"this.select();\" placeholder=\"Type in word\">\n    </div>\n    <div id = \"div2\">\n      <p> \n        ${window.stringy}\n      </p>\n    </div>\n\n    \n  </form>\n</main>\n\n<footer>\n  <p> After 10 seconds the test will move on to the next word.</p>\n\n</footer>",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "enter",
+            "keypress",
+            "#recall",
+            "Enter"
+          ],
+          [
+            "submit",
+            "click",
+            "button#bend",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "add strings",
+              "message": "end",
+              "code": "window.word = document.getElementById(\"recall\").value\n\nwindow.stringy = stringy + word + ', '\n\nthis.data.typed_word = word\nthis.data.trial = free_index\nthis.data.test_cue = window.wordcue\n\nif (this.data.response == \"submit\") {\n  this.parent.end()\n  this.parent.parent.end()\n}\n\n++window.free_index"
+            }
+          ],
+          [
+            {
+              "title": "set cursor into the input field",
+              "message": "run",
+              "code": "// Credits: http://blog.vishalon.net/index.php/javascript-getting-and-setting-caret-position-in-textarea/\nfunction setCaretPosition(ctrl, pos) {\n  // Modern browsers\n  if (ctrl.setSelectionRange) {\n    ctrl.focus();\n    ctrl.setSelectionRange(pos, pos);\n  \n  // IE8 and below\n  } else if (ctrl.createTextRange) {\n    var range = ctrl.createTextRange();\n    range.collapse(true);\n    range.moveEnd('character', pos);\n    range.moveStart('character', pos);\n    range.select();\n  }\n}\n\n// Set the cursor position of the \"#test-input\" element to the end when the page loads\nvar input = document.getElementById('recall');\nsetCaretPosition(input, input.value.length);"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "before:prepare",
+              "code": "window.wordcue = window.wordcue_test2[CounterTest2];"
+            }
+          ]
+        ]
+      },
+      "title": "Typing",
+      "_tab": "Behavior",
+      "tardy": true
+    },
+    "29": {
+      "id": "29",
+      "type": "lab.html.Form",
+      "content": "",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// remember or process\nwindow.trial_condition = window.condition_list1[CounterList1]\n\nif (trial_condition == \"process\") {\n  window.trial_color = window.subj_proc_color\n} else {\n  window.trial_color = window.subj_rem_color\n}\n// save what color was used\nwindow.this_color = window.color_list1"
+            }
+          ]
+        ]
+      },
+      "title": "Blank",
+      "_tab": "Scripts",
+      "timeout": "250"
+    },
+    "30": {
+      "id": "30",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "",
+              "content": "<main>\n<p>Unfortunately, you have answered the question wrong. Therefore the experiment ends for you. To quit the experiment, exit the browser window and return your submission on Prolific.</p>\n</main>"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": "\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "Attention Check Fail blue",
+      "_tab": "Scripts",
+      "tardy": true,
+      "skipCondition": "${ (this.state.Attention_Check == 'blue') }"
+    },
+    "32": {
+      "id": "32",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<main>\nTOO FAST! Please respond carefully\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "too fast",
+      "_tab": "Content",
+      "skipCondition": "${ (subj_stim_type == \"words\") || (window.fast > '400') }",
+      "tardy": true,
+      "timeout": "4000"
+    },
+    "37": {
+      "id": "37",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n<main> Thank you for paying attention! Now we can start with the experiment. Please press continue.</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Attention alright",
+      "_tab": "Scripts"
+    },
+    "38": {
+      "id": "38",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "",
+              "content": "<main>\n<p>Unfortunately, you have answered the question wrong. Therefore the experiment ends for you. To quit the experiment, exit the browser window and return your submission on Prolific.</p>\n</main>"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": "\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "Attention Check Fail red",
+      "_tab": "Behavior",
+      "tardy": true,
+      "skipCondition": "${ (this.state.Attention_Check == 'red') }"
+    },
+    "39": {
+      "id": "39",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: center;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n<header> <p>This first list is only for training to get familiar with the task. </p>\n<p>\nReady? Press <kbd> space </kbd> to begin.\n</p>\n</header>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "start",
+            "keypress",
+            "",
+            "Space"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Ready",
+      "_tab": "Content"
+    },
+    "40": {
+      "id": "40",
+      "type": "lab.canvas.Screen",
+      "content": [
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 0,
+          "top": 0,
+          "width": 18.69,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "+",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "4969",
+          "styles": {}
+        }
+      ],
+      "viewport": [
+        800,
+        600
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "window.pause = false"
+            }
+          ]
+        ]
+      },
+      "title": "Fixation Cross",
+      "_tab": "Scripts",
+      "timeout": "500"
+    },
+    "41": {
+      "id": "41",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n"
+            }
+          ],
+          [
+            {
+              "type": "text",
+              "title": "General instructions",
+              "content": "<p>You will see 30 words in each list. Please continue judging the size of each word relative to the one before it until all words have been presented.</p>\n\n<p>You will see 3 such lists, and after each list you will have to write all the words that you can remember from the list.</p>\n\n<p>After you respond to a word, the black border around the word will become either BLUE or RED. <b>You only have to remember the words followed by a BLUE color for the later test!</b> </p>"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "radio",
+              "options": [
+                {
+                  "label": "yellow",
+                  "coding": "yellow"
+                },
+                {
+                  "label": "purple",
+                  "coding": "purple"
+                },
+                {
+                  "label": "orange",
+                  "coding": "orange"
+                },
+                {
+                  "label": "red",
+                  "coding": "red"
+                },
+                {
+                  "label": "blue",
+                  "coding": "blue"
+                },
+                {
+                  "label": "green",
+                  "coding": "green"
+                },
+                {
+                  "label": "brown",
+                  "coding": "brown"
+                },
+                {
+                  "label": "black",
+                  "coding": "black"
+                }
+              ],
+              "label": "Which color are you supposed to remember? ",
+              "shuffle": true,
+              "name": "Attention_Check"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "saving color condition",
+              "message": "end",
+              "code": "this.data.color_condition = rem_color[group_id]\n\n\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "General instructions (blue) Q",
+      "_tab": "Content",
+      "tardy": false,
+      "skipCondition": ""
+    },
+    "42": {
+      "id": "42",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "2",
+        "41",
+        "30"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Sequence",
+      "_tab": "Scripts"
+    },
+    "43": {
+      "id": "43",
+      "type": "lab.flow.Loop",
+      "children": [
+        "42"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "0",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "1"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Loop",
+      "_tab": "Scripts",
+      "tardy": true,
+      "skipCondition": "${ (window.rem_color[group_id] == \"red\") }"
+    },
+    "44": {
+      "id": "44",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "14",
+        "58",
+        "38"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Sequence"
+    },
+    "45": {
+      "id": "45",
+      "type": "lab.flow.Loop",
+      "children": [
+        "44"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "0",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw",
+        "n": "1"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Loop",
+      "_tab": "Scripts",
+      "tardy": true,
+      "skipCondition": "${ (window.rem_color[group_id] == \"blue\") }"
+    },
+    "47": {
+      "id": "47",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{\nwidth: 900px;\ntext-align:  content-horizontal-center;\n}\n</style>\n\n<h2>Ready for the second block? Press <kbd> space </kbd> to begin.</h2>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "start",
+            "keypress",
+            "",
+            "Space"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Ready",
+      "_tab": "Content"
+    },
+    "48": {
+      "id": "48",
+      "type": "lab.canvas.Screen",
+      "content": [
+        {
+          "type": "i-text",
+          "version": "3.5.1",
+          "originX": "center",
+          "originY": "center",
+          "left": 0,
+          "top": 0,
+          "width": 18.69,
+          "height": 36.16,
+          "fill": "black",
+          "stroke": null,
+          "strokeWidth": 1,
+          "strokeDashArray": null,
+          "strokeLineCap": "butt",
+          "strokeDashOffset": 0,
+          "strokeLineJoin": "round",
+          "strokeMiterLimit": 4,
+          "scaleX": 1,
+          "scaleY": 1,
+          "angle": 0,
+          "flipX": false,
+          "flipY": false,
+          "opacity": 1,
+          "shadow": null,
+          "visible": true,
+          "clipTo": null,
+          "backgroundColor": "",
+          "fillRule": "nonzero",
+          "paintFirst": "fill",
+          "globalCompositeOperation": "source-over",
+          "transformMatrix": null,
+          "skewX": 0,
+          "skewY": 0,
+          "text": "+",
+          "fontSize": 32,
+          "fontWeight": "normal",
+          "fontFamily": "sans-serif",
+          "fontStyle": "normal",
+          "lineHeight": 1.16,
+          "underline": false,
+          "overline": false,
+          "linethrough": false,
+          "textAlign": "center",
+          "textBackgroundColor": "",
+          "charSpacing": 0,
+          "id": "4969",
+          "styles": {}
+        }
+      ],
+      "viewport": [
+        800,
+        600
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Fixation Cross",
+      "_tab": "Behavior",
+      "timeout": "500"
+    },
+    "49": {
+      "id": "49",
+      "type": "lab.flow.Loop",
+      "children": [
+        "50"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "1",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw-shuffle",
+        "n": "30"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "List2",
+      "_tab": "Content",
+      "timeout": "",
+      "_collapsed": false
+    },
+    "50": {
+      "id": "50",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "51",
+        "52",
+        "54",
+        "61",
+        "55",
+        "57",
+        "62",
+        "24"
+      ],
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Trial",
+      "_tab": "Scripts"
+    },
+    "51": {
+      "id": "51",
+      "type": "lab.html.Form",
+      "content": "",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "window.trial_condition = window.condition_list2[CounterList2]\nif (trial_condition == \"process\") {\n  window.trial_color = window.subj_proc_color\n} else {\n  window.trial_color = window.subj_rem_color\n}\n\n\nwindow.this_color = window.color_list2\n\nwindow.exception = \"no\"\n\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "Blank",
+      "_tab": "Behavior",
+      "timeout": "250"
+    },
+    "52": {
+      "id": "52",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n\t/* designed in https://divtable.com/table-styler/ */\n\ndiv.myStyle {\n  font-family: \"Arial Black\", Gadget, sans-serif;\n  width: 100%;\n  text-align: center;\n  border-collapse: collapse;\n}\n.divTable.myStyle .divTableCell, .divTable.myStyle .divTableHead {\n  border: 12px solid #000000;\n  padding: 5px 10px;\n}\n.divTable.myStyle .divTableBody .divTableCell {\n  font-size: 25px;\n  font-weight: bold;\n  color: #000000;\n}\n.myStyle .tableFootStyle {\n  font-size: 13px;\n}\n.myStyle .tableFootStyle .links {\n\t text-align: right;\n}\n.myStyle .tableFootStyle .links a{\n  display: inline-block;\n  background: #FFFFFF;\n  color: #398AA4;\n  padding: 2px 8px;\n  border-radius: 5px;\n}\n.myStyle.outerTableFooter {\n  border-top: none;\n}\n.myStyle.outerTableFooter .tableFootStyle {\n  padding: 3px 5px; \n}\n</style>\n\n<main>\n\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word1\"></div>\n</div>\n</div>\n</div>\n\n\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "yes",
+            "keyup",
+            "",
+            "ArrowUp"
+          ],
+          [
+            "no",
+            "keydown",
+            "",
+            "ArrowDown"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word\nvar myWord12 = window.word1_list2[CounterList2]\n\n// get element to display word\nvar word1_L2 = document.getElementById(\"word1\"); \nword1_L2.textContent = myWord12\n\n\n\n// save data\nthis.data.trial_condition = condition_list2[CounterList2]\nthis.data.presented_word1 = myWord12\nthis.data.presented_color = trial_color\n\n\n\n"
+            }
+          ],
+          [
+            {
+              "title": "saving data",
+              "message": "end",
+              "code": "window.legal = this.data.ended_on\n\nwindow.fast = this.data.duration\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "words",
+      "_tab": "Content",
+      "timeout": "",
+      "skipCondition": "${subj_stim_type == \"pairs\"}",
+      "tardy": true,
+      "correctResponse": ""
+    },
+    "54": {
+      "id": "54",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<main>\nTOO FAST! Please respond carefully\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": "window.exception = \"yes\""
+            }
+          ]
+        ]
+      },
+      "title": "too fast",
+      "_tab": "Content",
+      "timeout": "4000",
+      "skipCondition": "${ (subj_stim_type == \"pairs\") || (window.fast > '400')} ",
+      "tardy": true
+    },
+    "55": {
+      "id": "55",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n\t/* designed in https://divtable.com/table-styler/ */\n\ndiv.myStyle {\n  font-family: \"Arial Black\", Gadget, sans-serif;\n  width: 100%;\n  text-align: center;\n  border-collapse: collapse;\n}\n.divTable.myStyle .divTableCell, .divTable.myStyle .divTableHead {\n  border: 12px solid #000000;\n  padding: 5px 10px;\n}\n.divTable.myStyle .divTableBody .divTableCell {\n  font-size: 25px;\n  font-weight: bold;\n  color: #000000;\n}\n.myStyle .tableFootStyle {\n  font-size: 13px;\n}\n.myStyle .tableFootStyle .links {\n\t text-align: right;\n}\n.myStyle .tableFootStyle .links a{\n  display: inline-block;\n  background: #FFFFFF;\n  color: #398AA4;\n  padding: 2px 8px;\n  border-radius: 5px;\n}\n.myStyle.outerTableFooter {\n  border-top: none;\n}\n.myStyle.outerTableFooter .tableFootStyle {\n  padding: 3px 5px; \n}\n</style>\n\n<main>\n\n\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word1\">&nbsp;</div>\n</div>\n</div>\n</div>\n<br/>\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word2\">&nbsp;</div>\n</div>\n</div>\n</div>\n\n\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "up",
+            "keyup",
+            "",
+            "ArrowUp"
+          ],
+          [
+            "down",
+            "keydown",
+            "",
+            "ArrowDown"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "\n// get word1\nvar myWord12 = window.word1_list2[CounterList2]\n\n// get element to display word1\nvar word1_L2 = document.getElementById(\"word1\"); \nword1_L2.textContent = myWord12\n\n// get word2\nvar myWord22 = window.word2_list2[CounterList2]\n\n// get element to display word2\nvar word2_L2 = document.getElementById(\"word2\"); \nword2_L2.textContent = myWord22\n\n\n\n//save data\nthis.data.trial_condition = condition_list2[CounterList2]\nthis.data.presented_word1 = myWord12\nthis.data.presented_word2 = myWord22\nthis.data.presented_color = trial_color\n"
+            }
+          ],
+          [
+            {
+              "title": "saving data",
+              "message": "end",
+              "code": "window.legal = this.data.ended_on\n\nwindow.fast = this.data.duration\n\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "pairs",
+      "_tab": "Content",
+      "timeout": "",
+      "skip": false,
+      "skipCondition": "${subj_stim_type == \"words\"}",
+      "tardy": true
+    },
+    "57": {
+      "id": "57",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<main>\nTOO FAST! Please respond carefully\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": "window.exception = \"yes\""
+            }
+          ]
+        ]
+      },
+      "title": "too fast",
+      "_tab": "Content",
+      "skipCondition": "${ (subj_stim_type == \"words\") || (window.fast > '400') }",
+      "tardy": true,
+      "timeout": "4000"
+    },
+    "58": {
+      "id": "58",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "General instructions",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{width: 800px;text-align: left;}\nheader{  padding: 5px;  height: 120px;}\nfooter{  padding: 5px;  height: 100px;}\ndt{line-height: 2;font-weight: bold;}\ntable, th, td {  border: 1px solid black;\n  border-collapse: collapse;  background-color: #ecf2f9;}\nth, td {  padding: 1px;}\n</style>\n\n<p>You will see 30 words in each list. Please continue judging the size of each word relative to the one before it until all words have been presented.</p>\n\n<p>You will see 3 such lists, and after each list you will have to write all the words that you can remember from the list.</p>\n\n<p>After you respond to a word, the black border around the word will become either BLUE or RED. <b>You only have to remember the words followed by a RED color for the later test!</b> </p>"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "radio",
+              "options": [
+                {
+                  "label": "yellow",
+                  "coding": "yellow"
+                },
+                {
+                  "label": "blue",
+                  "coding": "blue"
+                },
+                {
+                  "label": "red",
+                  "coding": "red"
+                },
+                {
+                  "label": "green",
+                  "coding": "green"
+                },
+                {
+                  "label": "orange",
+                  "coding": "orange"
+                },
+                {
+                  "label": "brown",
+                  "coding": "brown"
+                },
+                {
+                  "label": "purple",
+                  "coding": "purple"
+                },
+                {
+                  "label": "black",
+                  "coding": "black"
+                }
+              ],
+              "label": "Which color are you supposed to remember? ",
+              "shuffle": true,
+              "name": "Attention_Check"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "saving color condition",
+              "message": "end",
+              "code": "this.data.color_condition = rem_color[group_id]"
+            }
+          ]
+        ]
+      },
+      "title": "General instructions (red) Q",
+      "_tab": "Content",
+      "tardy": false,
+      "skipCondition": ""
+    },
+    "59": {
+      "id": "59",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n\t/* designed in https://divtable.com/table-styler/ */\n\ndiv.myStyle {\n  font-family: \"Arial Black\", Gadget, sans-serif;\n  width: 100%;\n  text-align: center;\n  border-collapse: collapse;\n}\n.divTable.myStyle .divTableCell, .divTable.myStyle .divTableHead {\n  border: 12px solid ${window.trial_color};\n  padding: 5px 10px;\n}\n.divTable.myStyle .divTableBody .divTableCell {\n  font-size: 25px;\n  font-weight: bold;\n  color: #FFFFFF;\n}\n.myStyle .tableFootStyle {\n  font-size: 13px;\n}\n.myStyle .tableFootStyle .links {\n\t text-align: right;\n}\n.myStyle .tableFootStyle .links a{\n  display: inline-block;\n  background: #FFFFFF;\n  color: #398AA4;\n  padding: 2px 8px;\n  border-radius: 5px;\n}\n.myStyle.outerTableFooter {\n  border-top: none;\n}\n.myStyle.outerTableFooter .tableFootStyle {\n  padding: 3px 5px; \n}\n</style>\n<header> <div id = \"rem\"> \n  <p> Remember for the Test!\n  </p>\n</div>\n</header>\n<main>\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word1\"></div>\n\n</div>\n</div>\n</div>\n\n\n<div>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n</div>\n\n\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": []
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word1\nvar myWord11 = window.word1_list1[CounterList1]\n\n// get element to display word\nvar word1_L1 = document.getElementById(\"word1\"); \nword1_L1.textContent = myWord11\n\n// style how to display\nif (trial_condition == \"remember\") {\n  document.getElementById(\"rem\").style.display = \"block\"\n} else {\n  document.getElementById(\"rem\").style.display = \"none\"\n}\n\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "words_rem",
+      "_tab": "Content",
+      "timeout": "3000",
+      "skipCondition": "${ (subj_stim_type == \"pairs\") || (window.fast <= '400')} ",
+      "tardy": true,
+      "correctResponse": ""
+    },
+    "60": {
+      "id": "60",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n\t/* designed in https://divtable.com/table-styler/ */\n\ndiv.myStyle {\n  font-family: \"Arial Black\", Gadget, sans-serif;\n  width: 100%;\n  text-align: center;\n  border-collapse: collapse;\n}\n.divTable.myStyle .divTableCell, .divTable.myStyle .divTableHead {\n  border: 12px solid ${window.trial_color};\n  padding: 5px 10px;\n}\n.divTable.myStyle .divTableBody .divTableCell {\n  font-size: 25px;\n  font-weight: bold;\n  color: #FFFFFF;\n}\n.myStyle .tableFootStyle {\n  font-size: 13px;\n}\n.myStyle .tableFootStyle .links {\n\t text-align: right;\n}\n.myStyle .tableFootStyle .links a{\n  display: inline-block;\n  background: #FFFFFF;\n  color: #398AA4;\n  padding: 2px 8px;\n  border-radius: 5px;\n}\n.myStyle.outerTableFooter {\n  border-top: none;\n}\n.myStyle.outerTableFooter .tableFootStyle {\n  padding: 3px 5px; \n}\n</style>\n<header>\n  <div id = \"rem\"> \n  <p> Remember for the Test!\n  </p>\n</div>\n</header>\n\n<main>\n\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word1\"></div>\n</div>\n</div>\n</div>\n<br/>\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word2\">\n</div>\n</div>\n</div>\n\n<div>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n</div>\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": []
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word1\nvar myWord11 = window.word1_list1[CounterList1]\n\n// get element to display word1\nvar word1_L1 = document.getElementById(\"word1\"); \nword1_L1.textContent = myWord11\n\n// get word2\nvar myWord21 = window.word2_list1[CounterList1]\n\n// get element to display word2\nvar word2_L1 = document.getElementById(\"word2\"); \nword2_L1.textContent = myWord21\n\n\n//show remember for condition color\nif (trial_condition == \"remember\") {\n  document.getElementById(\"rem\").style.display = \"block\"\n} else {\n  document.getElementById(\"rem\").style.display = \"none\"\n}\n"
+            }
+          ]
+        ]
+      },
+      "title": "pairs_rem",
+      "_tab": "Content",
+      "timeout": "3000",
+      "skip": false,
+      "skipCondition": "${ (subj_stim_type == \"words\") || (window.fast <= '400') }",
+      "tardy": true
+    },
+    "61": {
+      "id": "61",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n\t/* designed in https://divtable.com/table-styler/ */\n\ndiv.myStyle {\n  font-family: \"Arial Black\", Gadget, sans-serif;\n  width: 100%;\n  text-align: center;\n  border-collapse: collapse;\n}\n.divTable.myStyle .divTableCell, .divTable.myStyle .divTableHead {\n  border: 12px solid ${window.trial_color};\n  padding: 5px 10px;\n}\n.divTable.myStyle .divTableBody .divTableCell {\n  font-size: 25px;\n  font-weight: bold;\n  color: #FFFFFF;\n}\n.myStyle .tableFootStyle {\n  font-size: 13px;\n}\n.myStyle .tableFootStyle .links {\n\t text-align: right;\n}\n.myStyle .tableFootStyle .links a{\n  display: inline-block;\n  background: #FFFFFF;\n  color: #398AA4;\n  padding: 2px 8px;\n  border-radius: 5px;\n}\n.myStyle.outerTableFooter {\n  border-top: none;\n}\n.myStyle.outerTableFooter .tableFootStyle {\n  padding: 3px 5px; \n}\n</style>\n\n<main>\n\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word1\"></div>\n</div>\n</div>\n</div>\n\n\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": []
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "// get word\nvar myWord12 = window.word1_list2[CounterList2]\n\n// get element to display word\nvar word1_L2 = document.getElementById(\"word1\"); \nword1_L2.textContent = myWord12\n\n\n\n\n\n\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "words_rem",
+      "_tab": "Content",
+      "timeout": "3000",
+      "skipCondition": "${(subj_stim_type == \"pairs\") || (window.exception == \"yes\")}",
+      "tardy": true,
+      "correctResponse": ""
+    },
+    "62": {
+      "id": "62",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n\t/* designed in https://divtable.com/table-styler/ */\n\ndiv.myStyle {\n  font-family: \"Arial Black\", Gadget, sans-serif;\n  width: 100%;\n  text-align: center;\n  border-collapse: collapse;\n}\n.divTable.myStyle .divTableCell, .divTable.myStyle .divTableHead {\n  border: 12px solid ${window.trial_color};\n  padding: 5px 10px;\n}\n.divTable.myStyle .divTableBody .divTableCell {\n  font-size: 25px;\n  font-weight: bold;\n  color: #FFFFFF;\n}\n.myStyle .tableFootStyle {\n  font-size: 13px;\n}\n.myStyle .tableFootStyle .links {\n\t text-align: right;\n}\n.myStyle .tableFootStyle .links a{\n  display: inline-block;\n  background: #FFFFFF;\n  color: #398AA4;\n  padding: 2px 8px;\n  border-radius: 5px;\n}\n.myStyle.outerTableFooter {\n  border-top: none;\n}\n.myStyle.outerTableFooter .tableFootStyle {\n  padding: 3px 5px; \n}\n</style>\n\n<main>\n\n\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word1\">&nbsp;</div>\n</div>\n</div>\n</div>\n<br/>\n<div class=\"divTable myStyle\">\n<div class=\"divTableBody\">\n<div class=\"divTableRow\">\n<div class=\"divTableCell\" id = \"word2\">&nbsp;</div>\n</div>\n</div>\n</div>\n\n\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": []
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "\n// get word1\nvar myWord12 = window.word1_list2[CounterList2]\n\n// get element to display word1\nvar word1_L2 = document.getElementById(\"word1\"); \nword1_L2.textContent = myWord12\n\n// get word2\nvar myWord22 = window.word2_list2[CounterList2]\n\n// get element to display word2\nvar word2_L2 = document.getElementById(\"word2\"); \nword2_L2.textContent = myWord22\n\n"
+            }
+          ]
+        ]
+      },
+      "title": "pairs_rem",
+      "_tab": "Content",
+      "timeout": "3000",
+      "skip": false,
+      "skipCondition": "${(subj_stim_type == \"words\") || (window.exception == \"yes\")}",
+      "tardy": true
+    },
+    "63": {
+      "id": "63",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": ""
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<style>\n#div1{\nwidth: 900px;\ntext-align:  content-horizontal-center;\n}\n</style>\n\n<main> The previous list was for practice. Now the real list begins. Please judge the size of each object relative to the one before it and remember only the words in your color. You will no longer see instructions for each word, but your task is the same as in the practice list.\n</main>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Instruction List2"
+    },
+    "71": {
+      "id": "71",
+      "type": "lab.html.Form",
+      "content": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    .wrapper{\n      display: grid;\n      grid-template-rows: 33% 33% 33%;\n      background-color: white;\n      text-align: center;\n      align-items: center;\n      padding: 10px 0;\n      font-size: 30px;\n    }\n\n    .my_header{\n      display: grid;\n      grid-template-columns: 70% 30%;\n      grid-auto-rows: 130px;\n      background-color: white;\n      font-size: 26px;\n    }\n\n    .q_mark{\n      background-color: white;\n      align-items: center;\n    }\n\n    .boxes{\n      display: grid;\n      grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;\n      background-color: white;\n      text-align: center;\n\n    }\n\n    .inputs{\n      display:grid;\n      grid-template-columns: 50% 50%;\n      text-align: center;\n    }\n    \n    input{\n      padding: 1px; \n      margin: 0px 0;\n      box-sizing: border-box;\n      font-size : 16pt  \n    }\n\n    .box{\n      display: grid;\n      background-color: white;\n      border: 5px solid black;\n      width:180px;\n      height:80px;\n      line-height: 80px;\n      padding: 5px;\n      margin: 10px 0;\n      font-size : 20pt \n  \n    }\n\n    .my_footer{\n      position:absolute;\n      bottom:0;\n      width:100%;\n      height:60px; \n      background:white;\n      font-size : 20pt\n      text-align: center;\n    }\n\n    </style>\n</head>\n\n<body>\n  <div class = \"my_header content-horizontal-left\">\n    <div> \n      <p style=\"line-height: 120%\">Please solve the arithmetic problems below. </p>\n    </div>\n\n    <div class = \"q_mark content-horizontal-center\">\n\n    </div>\n  </div>\n  \n  <div class = \"wrapper\">\n\n    <div class = \"boxes\" id=\"i3\">\n      <div class = \"box\" id=\"box01\">\n      </div>\n      <div class = \"box\" id=\"box02\">\n      </div>\n      <div class = \"box\" id=\"box03\">\n      </div>\n      <div class = \"box\" id=\"box04\">\n      </div>\n      <div class = \"box\" id=\"box05\">\n      </div>\n      <div class = \"box\" id=\"box06\">\n      </div>\n      <div class = \"box\" id=\"box07\">\n      </div>\n    </div>\n\n    <div>\n      <br>\n      <br>\n      <br>\n      <label id = \"math\" for=\"fname\"></label>\n      <input type=\"text\" id=\"fname\" name=\"fname\" font-size: 30px;>\n    </div>\n\n    <div class=\"boxes\">\n    </div>\n  </div>\n\n  <div class = \"my_footer content-horizontal-center\">\n    <p>Type the number and press <kbd>Enter</kbd></p>\n  </div>\n  </body>\n</html>",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "keydown",
+            "",
+            "Enter"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "\r\n// hide the boxes\r\ndocument.getElementById('box01').style.display='none';\r\ndocument.getElementById('box02').style.display='none';\r\ndocument.getElementById('box03').style.display='none';\r\ndocument.getElementById('box04').style.display='none';\r\ndocument.getElementById('box05').style.display='none';\r\ndocument.getElementById('box06').style.display='none';\r\ndocument.getElementById('box07').style.display='none';\r\n\r\n\r\n// set the focus of cursor\r\ndocument.getElementById(\"fname\").focus();\r\n\r\n// get the math box to enter the equaison\r\nvar fieldNameElement = document.getElementById(\"math\"); \r\n\r\nif (math_problem_number < 38){\r\n  fieldNameElement.textContent = math_problems[math_problem_number];\r\n}else{\r\n  fieldNameElement.textContent = math_problems[math_problem_number];\r\n  math_problem_number = 0\r\n}\r\n\r\n// increment the problem number\r\nmath_problem_number++\r\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "this.data.question = math_problems[math_problem_number-1]\r\nthis.data.answer = document.getElementById(\"fname\").value; \r\n\r\nwindow.free_index = 1000\r\nwindow.stringy = \"\""
+            }
+          ]
+        ]
+      },
+      "title": "math_task",
+      "_tab": "Behavior"
+    },
+    "74": {
+      "id": "74",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<p>This is the end of the practice study list. Before the memory test, you have to solve a series of simple arithmetic problems. \nOn each slide you will see an unsolved equation like this one:</p>\n\n<p>(9 + 3) x 2 = __</p>\n\n<p>Please solve the equation as accurately as possible and type your response in the input below it. In this example, the correct answer is 24. Press the ENTER button to submit your response and continue on to the next equation.</p>\n\n<p>After solving the equations, the memory test will begin.</p>\n\n<p>Press any key to continue.</p>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "continue",
+            "keypress",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Distractor instructions",
+      "_tab": "Content"
+    },
+    "76": {
+      "id": "76",
+      "type": "lab.flow.Loop",
+      "children": [
+        "77"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "1",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "draw-shuffle",
+        "n": "500"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "before:prepare",
+              "code": "window.math_problems = this.random.shuffle(window.math_problems);\r\n\r\nwindow.math_problem_number = 0"
+            }
+          ]
+        ]
+      },
+      "title": "Distractor list 2",
+      "_tab": "Behavior",
+      "timeout": "60000",
+      "tardy": true
+    },
+    "77": {
+      "id": "77",
+      "type": "lab.html.Form",
+      "content": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    .wrapper{\n      display: grid;\n      grid-template-rows: 33% 33% 33%;\n      background-color: white;\n      text-align: center;\n      align-items: center;\n      padding: 10px 0;\n      font-size: 30px;\n    }\n\n    .my_header{\n      display: grid;\n      grid-template-columns: 70% 30%;\n      grid-auto-rows: 130px;\n      background-color: white;\n      font-size: 26px;\n    }\n\n    .q_mark{\n      background-color: white;\n      align-items: center;\n    }\n\n    .boxes{\n      display: grid;\n      grid-template-columns: 14.2% 14.2% 14.2% 14.2% 14.2% 14.2% 14.2%;\n      background-color: white;\n      text-align: center;\n\n    }\n\n    .inputs{\n      display:grid;\n      grid-template-columns: 50% 50%;\n      text-align: center;\n    }\n    \n    input{\n      padding: 1px; \n      margin: 0px 0;\n      box-sizing: border-box;\n      font-size : 16pt  \n    }\n\n    .box{\n      display: grid;\n      background-color: white;\n      border: 5px solid black;\n      width:180px;\n      height:80px;\n      line-height: 80px;\n      padding: 5px;\n      margin: 10px 0;\n      font-size : 20pt \n  \n    }\n\n    .my_footer{\n      position:absolute;\n      bottom:0;\n      width:100%;\n      height:60px; \n      background:white;\n      font-size : 20pt\n      text-align: center;\n    }\n\n    </style>\n</head>\n\n<body>\n  <div class = \"my_header content-horizontal-left\">\n    <div> \n      <p style=\"line-height: 120%\">Please solve the arithmetic problems below. </p>\n    </div>\n\n    <div class = \"q_mark content-horizontal-center\">\n\n    </div>\n  </div>\n  \n  <div class = \"wrapper\">\n\n    <div class = \"boxes\" id=\"i3\">\n      <div class = \"box\" id=\"box01\">\n      </div>\n      <div class = \"box\" id=\"box02\">\n      </div>\n      <div class = \"box\" id=\"box03\">\n      </div>\n      <div class = \"box\" id=\"box04\">\n      </div>\n      <div class = \"box\" id=\"box05\">\n      </div>\n      <div class = \"box\" id=\"box06\">\n      </div>\n      <div class = \"box\" id=\"box07\">\n      </div>\n    </div>\n\n    <div>\n      <br>\n      <br>\n      <br>\n      <label id = \"math\" for=\"fname\"></label>\n      <input type=\"text\" id=\"fname\" name=\"fname\" font-size: 30px;>\n    </div>\n\n    <div class=\"boxes\">\n    </div>\n  </div>\n\n  <div class = \"my_footer content-horizontal-center\">\n    <p>Type the number and press <kbd>Enter</kbd></p>\n  </div>\n  </body>\n</html>",
+      "scrollTop": true,
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "keydown",
+            "",
+            "Enter"
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "run",
+              "code": "\r\n// hide the boxes\r\ndocument.getElementById('box01').style.display='none';\r\ndocument.getElementById('box02').style.display='none';\r\ndocument.getElementById('box03').style.display='none';\r\ndocument.getElementById('box04').style.display='none';\r\ndocument.getElementById('box05').style.display='none';\r\ndocument.getElementById('box06').style.display='none';\r\ndocument.getElementById('box07').style.display='none';\r\n\r\n\r\n// set the focus of cursor\r\ndocument.getElementById(\"fname\").focus();\r\n\r\n// get the math box to enter the equaison\r\nvar fieldNameElement = document.getElementById(\"math\"); \r\n\r\nif (math_problem_number < 38){\r\n  fieldNameElement.textContent = math_problems[math_problem_number];\r\n}else{\r\n  fieldNameElement.textContent = math_problems[math_problem_number];\r\n  math_problem_number = 0\r\n}\r\n\r\n// increment the problem number\r\nmath_problem_number++\r\n"
+            }
+          ],
+          [
+            {
+              "title": "",
+              "message": "end",
+              "code": "this.data.question = math_problems[math_problem_number-1]\r\nthis.data.answer = document.getElementById(\"fname\").value; \r\n\r\nwindow.free_index = 1000\r\nwindow.stringy = \"\""
+            }
+          ]
+        ]
+      },
+      "title": "math_task",
+      "_tab": "Behavior"
+    },
+    "78": {
+      "id": "78",
+      "type": "lab.flow.Loop",
+      "children": [
+        "71"
+      ],
+      "templateParameters": {
+        "columns": [
+          {
+            "name": "",
+            "type": "string"
+          },
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "rows": [
+          [
+            "1",
+            ""
+          ]
+        ]
+      },
+      "sample": {
+        "mode": "sequential",
+        "n": "500"
+      },
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "after:end",
+              "code": "math_problem_number = 0"
+            }
+          ]
+        ]
+      },
+      "title": "Distractor list 1",
+      "_tab": "Behavior",
+      "timeout": "30000",
+      "tardy": true
+    },
+    "85": {
+      "id": "85",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "title": "Thank you!",
+              "content": "Thank you for participating in the experiment. Please answer these final questions truthfully - your responses will not affect your compensation."
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "radio",
+              "options": [
+                {
+                  "label": "Yes",
+                  "coding": "yes"
+                },
+                {
+                  "label": "No",
+                  "coding": "No"
+                }
+              ],
+              "label": "Did you expect to be tested on all words regardless of color in the final test?",
+              "name": "expect_test"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "radio",
+              "options": [
+                {
+                  "label": "Yes, I used external aid",
+                  "coding": "Yes"
+                },
+                {
+                  "label": "No, I did not use external aid",
+                  "coding": "No"
+                }
+              ],
+              "label": "Did you use any aid to remember the words (e.g., by writing them down on a piece of paper or in a computer file)?",
+              "name": "use_help"
+            }
+          ],
+          [
+            {
+              "required": true,
+              "type": "radio",
+              "options": [
+                {
+                  "label": "Yes, I tried to recall even words I was not told to remember",
+                  "coding": "Yes"
+                },
+                {
+                  "label": "No, I only tried to recall the words I was told to remember",
+                  "coding": "No"
+                }
+              ],
+              "label": "In the final test, did you try to recall all words, regardless of their color?"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Click here to confirm your participation to Prolific",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Thanks"
+    },
+    "root": {
+      "id": "root",
+      "title": "root",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "1",
+        "16",
+        "8",
+        "9",
+        "43",
+        "45",
+        "37",
+        "39",
+        "40",
+        "13",
+        "74",
+        "78",
+        "19",
+        "20",
+        "63",
+        "47",
+        "48",
+        "49",
+        "76",
+        "3",
+        "4",
+        "85"
+      ],
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "plugins": [
+        {
+          "type": "lab.plugins.Metadata"
+        }
+      ],
+      "metadata": {
+        "title": "int_inc_mem10",
+        "description": "Experiment for testing whether a deep semantic processing of stimuli prevents an intention vs incidental memory effect with an item-based paradigm in episodic memory",
+        "repository": "",
+        "contributors": ""
+      }
+    }
+  },
+  "version": [
+    20,
+    1,
+    1
+  ],
+  "files": {
+    "files": {
+      "index.html": {
+        "content": "data:text/html,%3C!doctype%20html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%20%20%3Cmeta%20charset%3D%22utf-8%22%3E%0A%20%20%3Ctitle%3EExperiment%3C%2Ftitle%3E%0A%20%20%3C!--%20viewport%20setup%20--%3E%0A%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1%22%3E%0A%20%20%3C!--%20lab.js%20library%20and%20experiment%20code%20--%3E%0A%20%20%24%7B%20header%20%7D%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3C!--%20If%20you'd%20rather%20have%20a%20container%20with%20a%20fixed%20width%0A%20%20%20%20%20%20%20and%20variable%20height%2C%20try%20removing%20the%20fullscreen%20class%20below%20--%3E%0A%20%20%3Cdiv%20class%3D%22container%20fullscreen%22%20data-labjs-section%3D%22main%22%3E%0A%20%20%20%20%3Cmain%20class%3D%22content-vertical-center%20content-horizontal-center%22%3E%0A%20%20%20%20%20%20%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%3Ch2%3ELoading%20Experiment%3C%2Fh2%3E%0A%20%20%20%20%20%20%20%20%3Cp%3EThe%20experiment%20is%20loading%20and%20should%20start%20in%20a%20few%20seconds%3C%2Fp%3E%0A%20%20%20%20%20%20%3C%2Fdiv%3E%0A%20%20%20%20%3C%2Fmain%3E%0A%20%20%3C%2Fdiv%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E%0A",
+        "source": "library"
+      },
+      "style.css": {
+        "content": "data:text/css,%2F*%20Please%20define%20your%20custom%20styles%20here%20*%2F",
+        "source": "library"
+      }
+    },
+    "bundledFiles": {
+      "lib/lab.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.fallback.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.css": {
+        "type": "text/css"
+      },
+      "lib/loading.svg": {
+        "type": "image/svg+xml"
+      }
+    }
+  }
+}
