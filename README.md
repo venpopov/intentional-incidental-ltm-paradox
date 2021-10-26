@@ -1,6 +1,6 @@
 Contains experimental software, data and analysis code for the results reported in:
 
-Popov, V. & Dammes, H. (2021). Intent Matters: Resolving the Intentional vs Incidental Learning Paradox in Episodic Long-term Memory
+Popov, V. & Dames, H. (2021). Intent Matters: Resolving the Intentional vs Incidental Learning Paradox in Episodic Long-term Memory
 
 ## IMPORTANT!!!
 
