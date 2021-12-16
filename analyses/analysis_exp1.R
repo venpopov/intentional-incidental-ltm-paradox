@@ -64,11 +64,26 @@ memdat %>%
   filter(!exclude) %>% 
   group_by(id, trial_condition) %>% 
   summarise(acc = mean(acc)) %>% 
+  ungroup() %>% 
+  Rmisc::normDataWithin('id','acc') %>% 
+  mutate(acc = acc) %>% 
   group_by(trial_condition) %>% 
   summarise(acc_se = sd(acc)/sqrt(length(acc)),
     acc = mean(acc),
     acc_lower95 = acc-1.96*acc_se,
     acc_upper95 = acc+1.96*acc_se)
+
+
+# within-subject error bars
+memdat %>% 
+  filter(!exclude) %>% 
+  group_by(id, trial_condition) %>% 
+  summarise(acc = mean(acc)) %>% 
+  ungroup() %>%
+  Rmisc::summarySEwithin(measurevar='acc',withinvars = 'trial_condition',idvar='id') %>% 
+  mutate(acc_lower95 = round(acc-ci,3),
+         acc_upper95 = round(acc+ci,3)) 
+
 
 # overall accuracy per instruction and list
 memdat %>% 
@@ -80,6 +95,16 @@ memdat %>%
             acc = mean(acc),
             acc_lower95 = acc-1.96*acc_se,
             acc_upper95 = acc+1.96*acc_se)
+
+# within-subject error bars
+memdat %>% 
+  filter(!exclude) %>% 
+  group_by(id, listid, trial_condition) %>% 
+  summarise(acc = mean(acc)) %>% 
+  ungroup() %>%
+  Rmisc::summarySEwithin(measurevar='acc',withinvars = c('trial_condition','listid'),idvar='id') %>% 
+  mutate(acc_lower95 = acc-ci,
+         acc_upper95 = acc+ci)
   
 
 # overall RTs per instruction

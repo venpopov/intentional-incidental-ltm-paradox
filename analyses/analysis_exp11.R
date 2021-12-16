@@ -7,6 +7,11 @@ library(lme4)
 
 memdat <- read.csv('data/exp11_corrected/preproc_mem_data.csv')
 mathdat <- read.csv('data/exp11_corrected/preproc_math_data.csv')
+strategies <- read.csv('data/exp11_corrected/strategies_final.csv')
+names(strategies)[1] <- 'id'
+strategies$id <- as.factor(strategies$id)
+strategies$str1_sub <- paste(strategies$main1_joint, strategies$sub1_joint, sep=": ")
+strategies$str2_sub <- paste(strategies$main2_joint, strategies$sub2_joint, sep=": ")
 
 memdat$id <- as.factor(memdat$id)
 
@@ -14,6 +19,7 @@ memdat$id <- as.factor(memdat$id)
 size <- read.csv('data/mean_size_ratings.csv')
 size <- select(size, -X)
 memdat <- left_join(memdat, size, by=c('word1'))
+memdat <- left_join(memdat, strategies, by=c('id'))
 
 # loc acc for each subject
 loc_acc <- memdat %>% 
@@ -401,3 +407,76 @@ memdat %>%
   arrange(size_recall_acc)
 
 
+#############################################################################!
+# Strategy analysis                                                      ####
+#############################################################################!
+
+
+table(strategies$main1_joint)
+table(strategies$main2_joint)
+table(c(strategies$main1_joint, strategies$main2_joint))
+table(strategies$str1_sub)
+table(c(strategies$str1_sub, strategies$str2_sub)) %>% t() %>% t()
+
+
+
+# table of recall_accuracy per condition
+memdat %>% 
+  filter(!exclude, listid == 2) %>% 
+  group_by(id, listid, trial_condition, main1_joint) %>% 
+  summarise(recall_acc = mean(recall_acc),
+            loc_acc = mean(loc_acc)) %>% 
+  group_by(listid, trial_condition, main1_joint) %>% 
+  summarise(recall_acc = mean(recall_acc) %>% round(2),
+            loc_acc = mean(loc_acc) %>% round(2)) %>% 
+  gather(test_type, acc, recall_acc, loc_acc) %>% 
+  spread(trial_condition, acc) %>% 
+  mutate(total = (process+remember)/2) %>% 
+  arrange(test_type, listid)
+
+
+strdat <- memdat %>% 
+  filter(!exclude, listid == 2) %>% 
+  group_by(id, listid, trial_condition, main1_joint) %>% 
+  summarise(recall_acc = mean(recall_acc),
+            loc_acc = mean(loc_acc)) %>% 
+  group_by(listid, trial_condition, main1_joint) %>% 
+  summarise(recall_acc = mean(recall_acc) %>% round(2),
+            loc_acc = mean(loc_acc) %>% round(2)) %>% 
+  gather(test_type, acc, recall_acc, loc_acc) %>% 
+  spread(test_type, acc) %>% 
+  print()
+
+
+memdat %>% 
+  filter(!exclude, listid == 2) %>% 
+  gather(key, strategy, main1_joint, main2_joint) %>% 
+  filter(strategy != "") %>% 
+  ggplot(aes(trial_condition, recall_acc, color=strategy, group=strategy)) +
+  stat_summary(geom="pointrange") +
+  stat_summary(geom="line")
+
+memdat %>% 
+  filter(!exclude, listid == 2) %>% 
+  gather(key, strategy, main1_joint, main2_joint) %>% 
+  filter(strategy != "") %>% 
+  ggplot(aes(trial_condition, loc_acc, color=strategy, group=strategy)) +
+  stat_summary(geom="pointrange") +
+  stat_summary(geom="line")
+
+
+memdat %>% 
+  filter(!exclude, listid == 2) %>% 
+  gather(key, strategy, str1_sub, str2_sub) %>% 
+  filter(strategy != ": ") %>% 
+  ggplot(aes(trial_condition, recall_acc, color=strategy, group=strategy)) +
+  stat_summary(geom="pointrange") +
+  stat_summary(geom="line")
+
+memdat %>% 
+  filter(!exclude, listid == 2) %>% 
+  gather(key, strategy, str1_sub, str2_sub) %>% 
+  filter(strategy != ": ") %>% 
+  ggplot(aes(trial_condition, loc_acc, color=strategy, group=strategy)) +
+  stat_summary(geom="pointrange") +
+  stat_summary(geom="line")
