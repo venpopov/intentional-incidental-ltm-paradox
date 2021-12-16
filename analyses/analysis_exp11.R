@@ -1,5 +1,6 @@
 library(tidyverse)
 library(lme4)
+library(patchwork)
 
 #############################################################################!
 # DATA                                                                   ####
@@ -448,21 +449,35 @@ strdat <- memdat %>%
   print()
 
 
-memdat %>% 
+(f1 <- memdat %>% 
   filter(!exclude, listid == 2) %>% 
   gather(key, strategy, main1_joint, main2_joint) %>% 
   filter(strategy != "") %>% 
-  ggplot(aes(trial_condition, recall_acc, color=strategy, group=strategy)) +
+  ggplot(aes(trial_condition, recall_acc, color=strategy, group=strategy, shape=strategy)) +
   stat_summary(geom="pointrange") +
-  stat_summary(geom="line")
+  stat_summary(geom="line") +
+  scale_x_discrete('Item memory instructions', labels=c('Process-only','Remember')) +
+  scale_y_continuous('Free recall probability') +
+  scale_color_discrete('Encoding strategy') +
+  scale_shape_discrete('Encoding strategy') +
+  theme_bw())
 
-memdat %>% 
+(f2 <- memdat %>% 
   filter(!exclude, listid == 2) %>% 
   gather(key, strategy, main1_joint, main2_joint) %>% 
   filter(strategy != "") %>% 
-  ggplot(aes(trial_condition, loc_acc, color=strategy, group=strategy)) +
+  ggplot(aes(trial_condition, loc_acc, color=strategy, group=strategy, shape=strategy)) +
   stat_summary(geom="pointrange") +
-  stat_summary(geom="line")
+  stat_summary(geom="line") +
+  scale_x_discrete('Item memory instructions', labels=c('Process-only','Remember')) +
+  scale_y_continuous('Source memory accuracy') +
+  scale_color_discrete('Encoding strategy') +
+  scale_shape_discrete('Encoding strategy') +
+  theme_bw())
+
+f1+theme(legend.position = "none")+f2
+ggsave('../../figures/exp11_strategy.png', width=6.5, height=2.5)
+
 
 
 memdat %>% 
