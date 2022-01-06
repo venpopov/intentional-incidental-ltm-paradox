@@ -478,6 +478,24 @@ strdat <- memdat %>%
 f1+theme(legend.position = "none")+f2
 ggsave('../../figures/exp11_strategy.png', width=6.5, height=2.5)
 
+mldat <- filter(memdat, !exclude, studyRT <= 10000, studyRT >= 500, listid==2) %>% gather(key, strategy, main1_joint, main2_joint) %>% 
+  filter(strategy != "")
+ml1 <- glmer(recall_acc ~ trial_condition + (1|id), data=mldat, family='binomial')
+ml2 <- glmer(recall_acc ~ trial_condition + strategy + (1|id), data=mldat, family='binomial')
+ml3 <- glmer(recall_acc ~ trial_condition*strategy + (1|id), data=mldat, family='binomial')
+anova(ml1, ml2, ml3)
+
+bayesfactor_models(ml2, ml3, ml1)
+
+
+ml1 <- glmer(loc_acc ~ trial_condition + (1|id), data=mldat, family='binomial')
+ml2 <- glmer(loc_acc ~ trial_condition + strategy + (1|id), data=mldat, family='binomial')
+ml3 <- glmer(loc_acc ~ trial_condition*strategy + (1|id), data=mldat, family='binomial')
+anova(ml1, ml2, ml3)
+
+bayesfactor_models(ml2, ml3, ml1)
+
+
 
 
 memdat %>% 
