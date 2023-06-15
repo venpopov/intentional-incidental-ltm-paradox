@@ -19,3 +19,5 @@ The order in which the experiments are reported and the order in which they were
 | 8                                       | 4                                            |
 | 9                                       | 7                                            |
 | 10                                      | 11 & 12                                      |
+
+Experiment number 15 in the data and analysis files is reported in Dames & Popov (2023). Intent Matter for Memory, Most of the Time for Most People.
